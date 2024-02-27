@@ -29,10 +29,6 @@ Route::prefix('admin')->group(function () {
     });
 });
 
-Route::get('/listbarang/{id}/{nama}', function($id, $nama){
-    return view('list_barang', compact('id', 'nama'));
-});
+use App\Http\Controllers\ListBarangController;
 
-//Route::get('/listbarang/{id}/{nama}', function($id, $nama){
-//      return view('list_barang', compact('id', 'nama'));  
-// });
+Route::get('/listbarang', [ListBarangController::class, 'tampilkan'])->name('list_barang');

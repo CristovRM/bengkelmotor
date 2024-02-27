@@ -13,7 +13,6 @@
                 <td>{{ $dataku['id'] }}</td>
                 <td>{{ $dataku['nama'] }}</td>
                 <td>{{ $dataku['harga'] }}</td>
-
             </tr>
         @endforeach
     </tbody>
