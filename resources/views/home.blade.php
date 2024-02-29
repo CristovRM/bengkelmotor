@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Selamat datang di Bengkel Motor</h1>
-    <a href="{{ route('list_barang') }}">Lihat Daftar Barang</a>
+    <a href="{{ route('login') }}">Login Untuk Kehalaman Dashboard</a>
     <!-- Tambahkan elemen HTML sesuai kebutuhan -->
 </body>
 </html>
