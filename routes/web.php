@@ -32,3 +32,7 @@ Route::prefix('admin')->group(function () {
 use App\Http\Controllers\ListBarangController;
 
 Route::get('/listbarang', [ListBarangController::class, 'tampilkan'])->name('list_barang');
+
+use App\Http\Controllers\DashboardController;
+
+Route::get('/dashboard', [DashboardController::class, 'show'])->name('dashboard');
