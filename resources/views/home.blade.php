@@ -1,6 +1,11 @@
-<div>
-    <!-- Smile, breathe, and go slowly. - Thich Nhat Hanh -->
-    Selamat datang di home {{$nama}}<br>
-    Anda adalah seorang {{$pekerjaan}}
-
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bengkel Motor - Halaman Utama</title>
+</head>
+<body>
+    <h1>Selamat datang di Bengkel Motor</h1>
+    <a href="{{ route('list_barang') }}">Lihat Daftar Barang</a>
+    <!-- Tambahkan elemen HTML sesuai kebutuhan -->
+</body>
+</html>
