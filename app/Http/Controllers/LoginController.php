@@ -20,11 +20,17 @@ class LoginController extends Controller
 
         $credentials = $request->only('username', 'password');
 
-        if (auth()->attempt($credentials)) {
+        // Data pengguna statis
+        $staticUsers = [
+            'Admin' => 'kelompokd',
+        ];
+
+        // Memeriksa apakah kredensial yang diberikan sesuai dengan data statis
+        if (isset($staticUsers[$credentials['username']]) && $staticUsers[$credentials['username']] === $credentials['password']) {
+            // Simulasi autentikasi berhasil
             return redirect()->intended('dashboard');
         }
 
-        
         return redirect()->back()->with('error', 'Username atau password salah.');
     }
 }
