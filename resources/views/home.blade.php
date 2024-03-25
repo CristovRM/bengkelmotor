@@ -9,7 +9,8 @@
         @include('components.header')
     </header>
 
-    <h1>List Produk</h1>
+    <h1>Halaman Home</h1>
+        @include('components.slider')
     <div class="container">
         <main>
             @yield('content')
