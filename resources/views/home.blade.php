@@ -8,8 +8,6 @@
     <header>
         @include('components.header')
     </header>
-
-    <h1>Halaman Home</h1>
         @include('components.slider')
     <div class="container">
         <main>
