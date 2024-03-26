@@ -1,0 +1,84 @@
+/* app.css */
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 0 15px;
+    max-width: 1200px;
+}
+
+.py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.py-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.text-gray-100 {
+    color: #f7fafc;
+}
+
+.text-white {
+    color: #ffffff;
+}
+
+.bg-gray-100 {
+    background-color: #f7fafc;
+}
+
+.bg-gray-200 {
+    background-color: #edf2f7;
+}
+
+.bg-blue-500 {
+    background-color: #4299e1;
+}
+
+/* Navigation Bar */
+nav {
+    background-color: #4299e1;
+    color: #ffffff;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+}
+
+nav a:hover {
+    background-color: #3182ce;
+}
+
+/* Footer */
+footer {
+    background-color: #2d3748;
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+footer a {
+    color: #ffffff;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+}

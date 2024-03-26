@@ -14,7 +14,7 @@
                     @method('PUT')
                     <div class="form-group">
                         <label for="name">Nama Kategori:</label>
-                        <input type="text" class="form-control" id="name" name="name" value="{{ $kategori->name }}">
+                        <input type="text" class="form-control" id="nama_kategori" name="nama_kategori" value="{{ $kategori->nama_kategori }}">
                     </div>
                     <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                 </form>
