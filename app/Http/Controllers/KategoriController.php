@@ -24,12 +24,12 @@ class KategoriController extends Controller
             'nama_kategori' => 'required|unique:kategori|max:255',
         ]);
 
-        Category::create($request->all());
+        Kategori::create($request->all());
 
         return redirect()->route('kategori.index')->with('success', 'Kategori added successfully!');
     }
 
-    public function show(Category $kategori)
+    public function show(Kategori $kategori)
     {
         return view('kategori.show', compact('kategori'));
     }

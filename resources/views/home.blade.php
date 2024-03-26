@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>@yield('title', 'My App')</title>
+    <title>@yield('title', 'Sistem Informasi Bengkel Motor')</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"  rel="stylesheet" />
 </head>
 <body>
@@ -20,4 +20,3 @@
     </footer>
 </body>
 </html>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
