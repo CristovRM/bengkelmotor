@@ -3,7 +3,7 @@
 @include('dashboard')
 
 @section('content')
-    <div class="container mx-auto px-4 py-8">
+    <div class="container mx-auto px-4 py-8" style="width: 800px;">
         <h1 class="text-2xl font-bold mb-4">Daftar Kategori</h1>
         <a href="{{ route('kategori.create') }}" class="inline-block mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Tambah Kategori Baru</a>
         <div class="overflow-x-auto">
@@ -36,5 +36,3 @@
         </div>
     </div>
 @endsection
-
-
