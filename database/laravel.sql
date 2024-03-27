@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 25, 2024 at 02:40 PM
+-- Generation Time: Mar 26, 2024 at 02:56 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -47,8 +47,15 @@ CREATE TABLE `kategori` (
   `id_kategori` int(255) NOT NULL,
   `nama_kategori` varchar(255) NOT NULL,
   `created_at` timestamp(5) NOT NULL DEFAULT current_timestamp(5),
-  `update_at` timestamp(5) NOT NULL DEFAULT current_timestamp(5)
+  `updated_at` timestamp(5) NOT NULL DEFAULT current_timestamp(5)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `kategori`
+--
+
+INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `created_at`, `updated_at`) VALUES
+(4, 'Ban motor', '2024-03-26 06:53:25.00000', '2024-03-26 06:53:25.00000');
 
 -- --------------------------------------------------------
 
@@ -154,7 +161,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_kategori` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `migrations`
