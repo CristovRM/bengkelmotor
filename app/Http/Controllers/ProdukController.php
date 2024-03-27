@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Produk;
 use App\Models\Kategori;
+use App\Models\Supplier;
+
 
 class ProdukController extends Controller
 {
@@ -17,7 +19,8 @@ class ProdukController extends Controller
     public function create()
     {
         $kategori = Kategori::all();
-        return view('produk.create', compact('kategori'));
+        $supplier = Supplier::all();
+        return view('produk.create', compact('kategori' , 'supplier'));
     }
 
     public function store(Request $request)
@@ -26,6 +29,7 @@ class ProdukController extends Controller
             'nama_produk' => 'required',
             'merk'=> 'required',
             'id_kategori' => 'required',
+            'id_supplier' =>'required',
             'harga_beli' => 'required',
             'harga_jual' => 'required',
             'stok' => 'required',
@@ -34,6 +38,7 @@ class ProdukController extends Controller
         $produk = new Produk();
         $produk->nama_produk = $request->nama_produk;
         $produk->id_kategori = $request->id_kategori;
+        $produk->id_supplier = $request->id_supplier;
         $produk->merk = $request->merk;
         $produk->harga_beli = $request->harga_beli;
         $produk->harga_jual = $request->harga_jual;
@@ -57,7 +62,8 @@ class ProdukController extends Controller
     {
         $produk = Produk::findOrFail($id);
         $kategori = Kategori::all();
-        return view('produk.edit', compact('produk', 'kategori'));
+        $supplier = Supplier::all();
+        return view('produk.edit', compact('produk', 'kategori', 'supplier'));
     }
 
     public function update(Request $request, $id)

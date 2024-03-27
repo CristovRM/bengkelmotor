@@ -16,6 +16,7 @@ class BuatProdukTable extends Migration
         Schema::create('produk', function (Blueprint $table) {
             $table->increments('id_produk');
             $table->unsignedInteger('id_kategori');
+            $table->unsignedInteger('id_supplier');
             $table->string('nama_produk')->unique();
             $table->string('merk')->nullable();
             $table->integer('harga_beli');
@@ -26,6 +27,7 @@ class BuatProdukTable extends Migration
 
             // Add foreign key constraint
             $table->foreign('id_kategori')->references('id_produk')->on('kategori')->onDelete('cascade');
+            $table->foreign('id_supplier')->references('id_supplier')->on('supplier')->onDelete('cascade');
         });
     }
 

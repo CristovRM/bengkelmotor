@@ -22,6 +22,14 @@
                 </select>
             </div>
             <div class="mb-4">
+                 <label for="id_supplier" class="block text-sm font-bold mb-2">ID Supplier:</label>
+                 <select name="id_supplier" id="id_supplier" class="w-full px-3 py-2 border rounded" required>
+                    @foreach($supplier as $supplier)
+                        <option value="{{ $supplier->id_supplier }}">{{ $supplier->id_supplier }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-4">
                 <label for="merk" class="block text-sm font-bold mb-2">Merk:</label>
                 <input type="text" name="merk" id="merk" class="w-full px-3 py-2 border rounded">
             </div>

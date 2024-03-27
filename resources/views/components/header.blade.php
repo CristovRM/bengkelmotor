@@ -31,48 +31,6 @@
     <div id="mega-menu-full-image-dropdown" class="mt-1 bg-white border-gray-200 shadow-sm border-y dark:bg-gray-800 dark:border-gray-600">
         <div class="grid max-w-screen-xl px-4 py-5 mx-auto text-sm text-gray-500 dark:text-gray-400 md:grid-cols-3 md:px-6">
             <ul class="hidden mb-4 space-y-4 md:mb-0 md:block" aria-labelledby="mega-menu-full-image-button">
-                <li>
-                    <a href="#" class="hover:underline hover:text-blue-600 dark:hover:text-blue-500">
-                        Online Stores
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="hover:underline hover:text-blue-600 dark:hover:text-blue-500">
-                        Segmentation
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="hover:underline hover:text-blue-600 dark:hover:text-blue-500">
-                        Marketing CRM
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="hover:underline hover:text-blue-600 dark:hover:text-blue-500">
-                        Online Stores
-                    </a>
-                </li>
-            </ul>
-            <ul class="mb-4 space-y-4 md:mb-0">
-                <li>
-                    <a href="#" class="hover:underline hover:text-blue-600 dark:hover:text-blue-500">
-                        Our Blog
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="hover:underline hover:text-blue-600 dark:hover:text-blue-500">
-                        Terms & Conditions
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="hover:underline hover:text-blue-600 dark:hover:text-blue-500">
-                        License
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="hover:underline hover:text-blue-600 dark:hover:text-blue-500">
-                        Resources
-                    </a>
-                </li>
             </ul>
             <a href="login" class="p-8 bg-local bg-gray-500 bg-center bg-no-repeat bg-cover rounded-lg bg-blend-multiply hover:bg-blend-soft-light dark:hover:bg-blend-darken" style="background-image: url(/images/bings.png)">
                 <p class="max-w-xl mb-5 font-extrabold leading-tight tracking-tight text-white">Login Kedalam Dashboard</p>
