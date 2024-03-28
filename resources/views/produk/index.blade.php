@@ -1,5 +1,3 @@
-<!-- resources/views/produk/index.blade.php -->
-
 @extends('layouts.app')
 
 @include('dashboard')
@@ -15,6 +13,7 @@
                         <th class="py-3 px-6 text-left">Kode</th>
                         <th class="py-3 px-6 text-left">Nama</th>
                         <th class="py-3 px-6 text-left">Kategori</th>
+                        <th class="py-3 px-6 text-left">ID Supplier</th>
                         <th class="py-3 px-6 text-left">Merk</th>
                         <th class="py-3 px-6 text-left">Harga Beli</th>
                         <th class="py-3 px-6 text-left">Harga Jual</th>
@@ -29,6 +28,7 @@
                             <td class="py-3 px-6 text-left">{{ $item->id_produk }}</td>
                             <td class="py-3 px-6 text-left">{{ $item->nama_produk }}</td>
                             <td class="py-3 px-6 text-left">{{ $item->kategori->nama_kategori }}</td>
+                            <td class="py-3 px-6 text-left">{{ optional($item->supplier)->id_supplier }}</td>
                             <td class="py-3 px-6 text-left">{{ $item->merk }}</td>
                             <td class="py-3 px-6 text-left">{{ $item->harga_beli }}</td>
                             <td class="py-3 px-6 text-left">{{ $item->harga_jual }}</td>

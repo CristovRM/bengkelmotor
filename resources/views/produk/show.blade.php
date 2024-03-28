@@ -15,6 +15,9 @@
             <p><strong>Harga Jual:</strong> {{ $produk->harga_jual }}</p>
             <p><strong>Diskon:</strong> {{ $produk->diskon }}</p>
             <p><strong>Stok:</strong> {{ $produk->stok }}</p>
+            @if ($produk->supplier)
+            <p><strong>ID Supplier:</strong> {{ $produk->supplier->id_supplier }}</p>
+            @endif
         </div>
         <a href="{{ route('produk.index') }}" class="bg-blue-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded">Kembali</a>
     </div>
