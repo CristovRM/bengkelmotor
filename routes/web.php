@@ -71,3 +71,4 @@ Route::put('/supplier/{id}', [SupplierController::class, 'update'])->name('suppl
 Route::delete('/supplier/{id}', [SupplierController::class, 'destroy'])->name('supplier.destroy');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::get('/Home', [HomeController::class, 'index'])->name('Home');
