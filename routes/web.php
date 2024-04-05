@@ -7,7 +7,8 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\SupplierController;
-use App\Http\Controllers\Auth\KasirLoginController;
+use App\Http\Controllers\KasirController;
+
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
@@ -72,3 +73,6 @@ Route::delete('/supplier/{id}', [SupplierController::class, 'destroy'])->name('s
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/Home', [HomeController::class, 'index'])->name('Home');
+
+Route::get('/kasir', [KasirController::class, 'index'])->name('kasir.index');
+
