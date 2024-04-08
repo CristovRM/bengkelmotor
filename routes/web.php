@@ -3,9 +3,12 @@
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\KasirController;
+
 
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -69,6 +72,10 @@ Route::get('/supplier/{id}/edit', [SupplierController::class, 'edit'])->name('su
 Route::put('/supplier/{id}', [SupplierController::class, 'update'])->name('supplier.update');
 Route::delete('/supplier/{id}', [SupplierController::class, 'destroy'])->name('supplier.destroy');
 
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::get('/Home', [HomeController::class, 'index'])->name('Home');
+
+Route::get('/kasir', [KasirController::class, 'index'])->name('kasir.index');
 
 
 
