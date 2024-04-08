@@ -7,7 +7,7 @@
 @section('content')
     <div class="container mx-auto px-4 py-8" style="width: 800px;">
         <h1 class="text-2xl font-bold mb-4">Edit Supplier</h1>
-        <form action="{{ route('supplier.update', $supplier->id) }}" method="POST">
+        <form action="{{ route('supplier.update', $supplier->id_supplier) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="mb-4">

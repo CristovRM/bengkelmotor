@@ -21,12 +21,12 @@
                             <td class="py-3 px-6 text-left">{{ $item->id_kategori }}</td>
                             <td class="py-3 px-6 text-left">{{ $item->nama_kategori }}</td>
                             <td class="py-3 px-6 text-center">
-                                <a href="{{ route('kategori.show', $item->id_kategori) }}" class="mr-2 text-blue-600 hover:text-blue-900">Detail</a>
-                                <a href="{{ route('kategori.edit', $item->id_kategori) }}" class="mr-2 text-indigo-600 hover:text-blue-900">Edit</a>
+                                <a href="{{ route('kategori.show', $item->id_kategori) }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Detail</a>
+                                <a href="{{ route('kategori.edit', $item->id_kategori) }}" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">Edit</a>
                                 <form action="{{ route('kategori.destroy', $item->id_kategori) }}" method="POST" style="display:inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</button>
+                                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" onclick="return confirm('Apakah Anda yakin ingin menghapus ini?')">Hapus</button>
                                 </form>
                             </td>
                         </tr>

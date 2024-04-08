@@ -7,6 +7,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\SupplierController;
 
+
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
 
@@ -67,5 +68,11 @@ Route::get('/supplier/{id}', [SupplierController::class, 'show'])->name('supplie
 Route::get('/supplier/{id}/edit', [SupplierController::class, 'edit'])->name('supplier.edit');
 Route::put('/supplier/{id}', [SupplierController::class, 'update'])->name('supplier.update');
 Route::delete('/supplier/{id}', [SupplierController::class, 'destroy'])->name('supplier.destroy');
+
+
+
+
+
+
 
 
