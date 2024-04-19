@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2024 at 01:44 PM
+-- Generation Time: Apr 19, 2024 at 02:31 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -56,7 +56,9 @@ CREATE TABLE `kategori` (
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `created_at`, `updated_at`) VALUES
 (4, 'Ban motor', '2024-03-26 06:53:25.00000', '2024-03-26 06:53:25.00000'),
-(5, 'Spion', '2024-03-26 07:09:41.00000', '2024-03-26 07:09:41.00000');
+(5, 'Spion', '2024-03-26 07:09:41.00000', '2024-03-26 07:09:41.00000'),
+(6, 'Knalpot', '2024-03-28 03:17:32.00000', '2024-03-28 03:17:42.00000'),
+(7, 'Mesin', '2024-04-16 07:27:11.00000', '2024-04-16 07:27:11.00000');
 
 -- --------------------------------------------------------
 
@@ -120,6 +122,7 @@ CREATE TABLE `personal_access_tokens` (
 CREATE TABLE `produk` (
   `id_produk` int(255) NOT NULL,
   `id_kategori` int(255) NOT NULL,
+  `id_supplier` int(255) NOT NULL,
   `nama_produk` varchar(255) NOT NULL,
   `merk` varchar(255) NOT NULL,
   `harga_beli` int(255) NOT NULL,
@@ -134,9 +137,52 @@ CREATE TABLE `produk` (
 -- Dumping data for table `produk`
 --
 
-INSERT INTO `produk` (`id_produk`, `id_kategori`, `nama_produk`, `merk`, `harga_beli`, `diskon`, `harga_jual`, `stok`, `created_at`, `updated_at`) VALUES
-(1, 4, 'Ban', 'Ban FRD', 100000, 3, 150000, 2, '2024-03-26 12:14:58', '2024-03-26 12:14:58'),
-(2, 5, 'Spion', 'Aspira', 300000, 3, 400000, 10, '2024-03-27 05:39:21', '2024-03-27 05:39:21');
+INSERT INTO `produk` (`id_produk`, `id_kategori`, `id_supplier`, `nama_produk`, `merk`, `harga_beli`, `diskon`, `harga_jual`, `stok`, `created_at`, `updated_at`) VALUES
+(4, 4, 1, 'Ban', 'Ban FRD', 100000, 3, 150000, 5, '2024-03-27 08:13:17', '2024-03-28 03:55:57'),
+(5, 5, 2, 'Spion', 'Aspira', 300000, 3, 400000, 3, '2024-03-27 08:16:22', '2024-03-28 03:52:31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `supplier`
+--
+
+CREATE TABLE `supplier` (
+  `id_supplier` int(255) NOT NULL,
+  `nama_supplier` varchar(255) NOT NULL,
+  `alamat` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `supplier`
+--
+
+INSERT INTO `supplier` (`id_supplier`, `nama_supplier`, `alamat`, `created_at`, `updated_at`) VALUES
+(1, 'Vikra', 'Tembesi', '2024-03-27 06:29:20', '2024-03-27 08:17:22'),
+(2, 'Cristov', 'Batuaji', '2024-03-27 06:50:29', '2024-03-27 06:50:29');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transactions`
+--
+
+CREATE TABLE `transactions` (
+  `id` int(255) NOT NULL,
+  `transaction_time` date NOT NULL,
+  `total_price` decimal(10,2) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `transactions`
+--
+
+INSERT INTO `transactions` (`id`, `transaction_time`, `total_price`, `updated_at`, `created_at`) VALUES
+(4, '2024-04-06', 50000.00, '2024-04-17 02:08:38', '2024-04-17 02:08:38');
 
 -- --------------------------------------------------------
 
@@ -199,6 +245,18 @@ ALTER TABLE `produk`
   ADD PRIMARY KEY (`id_produk`);
 
 --
+-- Indexes for table `supplier`
+--
+ALTER TABLE `supplier`
+  ADD PRIMARY KEY (`id_supplier`);
+
+--
+-- Indexes for table `transactions`
+--
+ALTER TABLE `transactions`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -219,7 +277,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_kategori` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -237,7 +295,19 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id_produk` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_produk` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `supplier`
+--
+ALTER TABLE `supplier`
+  MODIFY `id_supplier` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `transactions`
+--
+ALTER TABLE `transactions`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
