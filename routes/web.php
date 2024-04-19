@@ -10,6 +10,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\KasirController;
 
 
+
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
 
@@ -74,5 +75,21 @@ Route::delete('/supplier/{id}', [SupplierController::class, 'destroy'])->name('s
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/Home', [HomeController::class, 'index'])->name('Home');
 
+use App\Http\Controllers\TransactionController;
+
 Route::get('/kasir', [KasirController::class, 'index'])->name('kasir.index');
+Route::get('/kasir/create', [KasirController::class, 'create'])->name('kasir.create');
+Route::post('/kasir', [KasirController::class, 'store'])->name('kasir.store');
+Route::get('/kasir/{id}', [KasirController::class, 'show'])->name('kasir.show');
+Route::get('/kasir/{id}/edit', [KasirController::class, 'edit'])->name('kasir.edit');
+Route::put('/kasir/{id}', [KasirController::class, 'update'])->name('kasir.update');
+Route::delete('/kasir/{id}', [KasirController::class, 'destroy'])->name('kasir.destroy');
+
+
+
+
+
+
+
+
 

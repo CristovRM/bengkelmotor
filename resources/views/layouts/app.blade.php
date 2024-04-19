@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BengkelMotor</title>
+    <title>@yield('title', 'BengkelMotor')</title> <!-- Default title is 'BengkelMotor', but it will be overridden by specific page title -->
     
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>

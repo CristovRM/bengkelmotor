@@ -18,4 +18,9 @@ class Produk extends Model
     {
         return $this->belongsTo(Supplier::class, 'id_supplier');
     }
+
+    public function pembelian()
+    {
+        return $this->hasMany(Pembelian::class, 'id_produk');
+    }
 }
