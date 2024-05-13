@@ -2,6 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\KategoriController;
+use App\Http\Controllers\Api\SupplierController;
+use App\Http\Controllers\Api\ProdukController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +22,21 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('kategori', [KategoriController::class, 'index']);
+Route::get('kategori/{id}', [KategoriController::class, 'show']);
+Route::post('kategori', [KategoriController::class, 'store']);
+Route::put('kategori/{id}', [KategoriController::class, 'update']);
+Route::delete('kategori/{id}', [KategoriController::class, 'destroy']);
+
+Route::get('supplier', [SupplierController::class, 'index']);
+Route::get('supplier/{id}', [SupplierController::class, 'show']);
+Route::post('supplier', [SupplierController::class, 'store']);
+Route::put('supplier/{id}', [SupplierController::class, 'update']);
+Route::delete('supplier/{id}', [SupplierController::class, 'destroy']);
+
+Route::get('produk', [ProdukController::class, 'index']);
+Route::get('produk/{id}', [ProdukController::class, 'show']);
+Route::post('produk', [ProdukController::class, 'store']);
+Route::put('produk/{id}', [ProdukController::class, 'update']);
+Route::delete('produk/{id}', [ProdukController::class, 'destroy']);
