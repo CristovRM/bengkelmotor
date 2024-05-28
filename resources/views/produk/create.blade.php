@@ -4,6 +4,8 @@
 
 @include('dashboard')
 
+@section('title', 'Tambah Data Produk')
+
 @section('content')
     <div class="container mx-auto px-4 py-8" style="width: 800px;">
         <h1 class="text-2xl font-bold mb-4">Tambah Produk Baru</h1>
@@ -14,18 +16,18 @@
                 <input type="text" name="nama_produk" id="nama_produk" class="w-full px-3 py-2 border rounded" required>
             </div>
             <div class="mb-4">
-                <label for="id_kategori" class="block text-sm font-bold mb-2">Kategori:</label>
-                <select name="id_kategori" id="id_kategori" class="w-full px-3 py-2 border rounded" required>
+                <label for="id" class="block text-sm font-bold mb-2">Kategori:</label>
+                <select name="id" id="id" class="w-full px-3 py-2 border rounded" required>
                     @foreach($kategori as $kategori)
-                        <option value="{{ $kategori->id_kategori }}">{{ $kategori->nama_kategori }}</option>
+                        <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="mb-4">
-                 <label for="id_supplier" class="block text-sm font-bold mb-2">ID Supplier:</label>
+                 <label for="id_supplier" class="block text-sm font-bold mb-2">Nama Supplier:</label>
                  <select name="id_supplier" id="id_supplier" class="w-full px-3 py-2 border rounded" required>
                     @foreach($supplier as $supplier)
-                        <option value="{{ $supplier->id_supplier }}">{{ $supplier->id_supplier }}</option>
+                        <option value="{{ $supplier->id_supplier }}">{{ $supplier->nama_supplier }}</option>
                     @endforeach
                 </select>
             </div>

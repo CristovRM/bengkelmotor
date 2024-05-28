@@ -14,6 +14,25 @@ class SupplierController extends Controller
         return view('supplier.index', compact('supplier'));
     }
 
+    public function data()
+    {
+        $supplier = Supplier::orderBy('id_supplier', 'desc')->get();
+
+        return datatables()
+            ->of($supplier)
+            ->addIndexColumn()
+            ->addColumn('aksi', function ($supplier) {
+                return '
+                <div class="btn-group">
+                    <button type="button" onclick="editForm(`'. route('supplier.update', $supplier->id_supplier) .'`)" class="btn btn-xs btn-info btn-flat"><i class="fa fa-pencil"></i></button>
+                    <button type="button" onclick="deleteData(`'. route('supplier.destroy', $supplier->id_supplier) .'`)" class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash"></i></button>
+                </div>
+                ';
+            })
+            ->rawColumns(['aksi'])
+            ->make(true);
+    }
+
     public function create()
     {
         return view('supplier.create');

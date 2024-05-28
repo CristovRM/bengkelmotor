@@ -9,18 +9,22 @@ class Produk extends Model
     protected $table = 'produk'; // Sesuaikan dengan nama tabel produk jika diperlukan
     protected $primaryKey = 'id_produk'; // Sesuaikan dengan nama primary key jika diperlukan
 
+    protected $fillable = [
+        'nama_produk', 'merk', 'id', 'id_supplier', 'harga_beli', 'harga_jual', 'diskon', 'stok'
+    ];
+
     public function kategori()
     {
-        return $this->belongsTo(Kategori::class, 'id_kategori');
+        return $this->belongsTo(Kategori::class, 'id');
     }
-    
+
     public function supplier()
     {
         return $this->belongsTo(Supplier::class, 'id_supplier');
     }
 
-    public function pembelian()
+    public function transaksi()
     {
-        return $this->hasMany(Pembelian::class, 'id_produk');
+        return $this->hasMany(Transaksi::class, 'id_produk');
     }
 }

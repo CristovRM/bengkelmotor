@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Schema;
     public function up(): void
     {
         Schema::create('kategori', function (Blueprint $table) {
-            $table->increments('id_kategori');
+            $table->increments('id');
             $table->string('nama_kategori')->unique();
             $table->timestamps();
         });

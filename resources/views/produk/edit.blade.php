@@ -4,6 +4,8 @@
 
 @include('dashboard')
 
+@section('title', 'Mengupdate Produk')
+
 @section('content')
     <div class="container mx-auto px-4 py-8" style="width: 800px;">
         <h1 class="text-2xl font-bold mb-4">Edit Produk</h1>
@@ -15,10 +17,10 @@
                 <input type="text" name="nama_produk" id="nama_produk" class="w-full px-3 py-2 border rounded" value="{{ $produk->nama_produk }}" required>
             </div>
             <div class="mb-4">
-                <label for="id_kategori" class="block text-sm font-bold mb-2">Kategori:</label>
-                <select name="id_kategori" id="id_kategori" class="w-full px-3 py-2 border rounded" required>
+                <label for="id" class="block text-sm font-bold mb-2">Kategori:</label>
+                <select name="id" id="id" class="w-full px-3 py-2 border rounded" required>
                     @foreach($kategori as $kategori)
-                        <option value="{{ $kategori->id_kategori }}" {{ $kategori->id_kategori == $produk->id_kategori ? 'selected' : '' }}>{{ $kategori->nama_kategori }}</option>
+                        <option value="{{ $kategori->id }}" {{ $kategori->id == $produk->id ? 'selected' : '' }}>{{ $kategori->nama_kategori }}</option>
                     @endforeach
                 </select>
             <div class="mb-4">
