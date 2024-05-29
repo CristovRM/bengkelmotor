@@ -6,10 +6,13 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function show()
+    public function index()
     {
-        // Tambahkan logika yang diperlukan di sini
+        
+        if (auth()->user()->role === 'kasir') {
+            return redirect()->route('kasir.dashboard');
+        }
+
         return view('dashboard');
-    }
+    }   
 }
-    

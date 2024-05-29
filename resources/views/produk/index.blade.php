@@ -8,6 +8,9 @@
     <div class="container mx-auto px-4 py-8" style="width: 800px;">
         <h1 class="text-2xl font-bold mb-4">Daftar Produk</h1>
         <a href="{{ route('produk.create') }}" class="inline-block mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Tambah Produk Baru</a>
+        @if (session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
         <div class="overflow-x-auto">
             <table class="w-full table-auto">
                 <thead>
@@ -15,7 +18,7 @@
                         <th class="py-3 px-6 text-left">Kode</th>
                         <th class="py-3 px-6 text-left">Nama</th>
                         <th class="py-3 px-6 text-left">Kategori</th>
-                        <th class="py-3 px-6 text-left">ID Supplier</th>
+                        <th class="py-3 px-6 text-left">Nama Supplier</th>
                         <th class="py-3 px-6 text-left">Merk</th>
                         <th class="py-3 px-6 text-left">Harga Beli</th>
                         <th class="py-3 px-6 text-left">Harga Jual</th>
@@ -29,8 +32,8 @@
                         <tr class="border-b border-gray-100 hover:bg-gray-100">
                             <td class="py-3 px-6 text-left">{{ $item->id_produk }}</td>
                             <td class="py-3 px-6 text-left">{{ $item->nama_produk }}</td>
-                            <td class="py-3 px-6 text-left">{{ $item->kategori->nama_kategori }}</td>
-                            <td class="py-3 px-6 text-left">{{ optional($item->supplier)->id_supplier }}</td>
+                            <td class="py-3 px-6 text-left">{{ optional($item->kategori)->nama_kategori }}</td>
+                            <td class="py-3 px-6 text-left">{{ optional($item->supplier)->nama_supplier }}</td>
                             <td class="py-3 px-6 text-left">{{ $item->merk }}</td>
                             <td class="py-3 px-6 text-left">{{ $item->harga_beli }}</td>
                             <td class="py-3 px-6 text-left">{{ $item->harga_jual }}</td>
@@ -42,7 +45,7 @@
                                 <form action="{{ route('produk.destroy', $item->id_produk) }}" method="POST" style="display:inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</button>
+                                    <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini?')">Hapus</button>
                                 </form>
                             </td>
                         </tr>

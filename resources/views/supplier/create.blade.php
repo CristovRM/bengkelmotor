@@ -4,6 +4,8 @@
 
 @include('dashboard')
 
+@section('title', 'Tambah Data Supplier')
+
 @section('content')
     <div class="container mx-auto px-4 py-8" style="width: 800px;">
         <h1 class="text-2xl font-bold mb-4">Tambah Supplier Baru</h1>

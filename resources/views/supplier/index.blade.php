@@ -13,9 +13,9 @@
         @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
-        <table class="table-auto w-full">
+        <table class="w-full table-auto">
             <thead>
-                <tr>
+                <tr class="bg-gray-200 text-gray-100 uppercase text-sm leading-normal">
                     <th class="px-4 py-2">ID</th>
                     <th class="px-4 py-2">Nama Supplier</th>
                     <th class="px-4 py-2">Alamat</th>
@@ -24,7 +24,7 @@
             </thead>
             <tbody>
                 @foreach ($supplier as $supplier)
-                    <tr>
+                <tr>
                         <td class="border px-4 py-2">{{ $supplier->id_supplier }}</td>
                         <td class="border px-4 py-2">{{ $supplier->nama_supplier }}</td>
                         <td class="border px-4 py-2">{{ $supplier->alamat }}</td>

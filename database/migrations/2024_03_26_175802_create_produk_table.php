@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class BuatProdukTable extends Migration
+class CreateProdukTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class BuatProdukTable extends Migration
     {
         Schema::create('produk', function (Blueprint $table) {
             $table->increments('id_produk');
-            $table->unsignedInteger('id_kategori');
+            $table->unsignedInteger('id');
             $table->unsignedInteger('id_supplier');
             $table->string('nama_produk')->unique();
             $table->string('merk')->nullable();
@@ -26,7 +26,7 @@ class BuatProdukTable extends Migration
             $table->timestamps();
 
             // Add foreign key constraint
-            $table->foreign('id_kategori')->references('id_produk')->on('kategori')->onDelete('cascade');
+            $table->foreign('id')->references('id_produk')->on('kategori')->onDelete('cascade');
             $table->foreign('id_supplier')->references('id_supplier')->on('supplier')->onDelete('cascade');
         });
     }

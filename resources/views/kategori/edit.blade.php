@@ -2,6 +2,8 @@
 
 @include('dashboard')
 
+@section('title', 'Mengupdate Kategori')
+
 @section('content')
     <div class="container mx-auto px-4 py-8">
         <div class="w-full max-w-md mx-auto bg-white rounded-lg overflow-hidden">

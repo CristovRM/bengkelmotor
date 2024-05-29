@@ -2,48 +2,74 @@
 
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\KasirController;
+use App\Http\Controllers\UserController;
+
+
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+Route::post('/users', [UserController::class, 'store'])->name('users.store');
+Route::get('/users/{users}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::put('/users/{users}', [UserController::class, 'update'])->name('users.update');
+Route::delete('/users/{users}', [UserController::class, 'destroy'])->name('users.destroy');
 
 
 
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
+
+
+Route::middleware(['guest'])->group (function (){
+    Route::get('/login', [LoginController::class, 'index'])->name('login');
+    Route::post('/login', [LoginController::class, 'login']);
+        
+});
+
+    
+
+
+
+
 
 Route::get('/welcome', function (){
     return view('welcome');
 });
-
+Route::get('/home',function (){
+  return redirect('/dashboard');
+});
 
 
 Route::get ('/', [HomeController::class, 'index']);
 Route::get('/contact', [HomeController::class, 'contact']);
 
 
-Route::get('/user/{id}', function ($id) {
-    return 'User dengan ID' . $id;
-});
 
-Route::prefix('admin')->group(function () {
-    Route::get('/dashboard', function () {
-        return 'Admin Dashboard';
-    });
 
-    Route::get('/users', function () {
-        return 'Admin Users';
-    });
-});
+
+    
+
 
 use App\Http\Controllers\ListBarangController;
 
 Route::get('/listbarang', [ListBarangController::class, 'tampilkan'])->name('list_barang');
-use App\Http\Controllers\DashboardController;
 
-Route::get('/dashboard', [DashboardController::class, 'show'])->name('dashboard');
+Route::middleware(['auth'])->group(function (){
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+    
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/kasir', [KasirController::class, 'index'])->name('kasir.dashboard');
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+    
+});
+
 
 
 Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori.index');
@@ -75,15 +101,12 @@ Route::delete('/supplier/{id}', [SupplierController::class, 'destroy'])->name('s
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/Home', [HomeController::class, 'index'])->name('Home');
 
-use App\Http\Controllers\TransactionController;
-
-Route::get('/kasir', [KasirController::class, 'index'])->name('kasir.index');
-Route::get('/kasir/create', [KasirController::class, 'create'])->name('kasir.create');
-Route::post('/kasir', [KasirController::class, 'store'])->name('kasir.store');
-Route::get('/kasir/{id}', [KasirController::class, 'show'])->name('kasir.show');
-Route::get('/kasir/{id}/edit', [KasirController::class, 'edit'])->name('kasir.edit');
-Route::put('/kasir/{id}', [KasirController::class, 'update'])->name('kasir.update');
-Route::delete('/kasir/{id}', [KasirController::class, 'destroy'])->name('kasir.destroy');
+Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
+Route::get('/transaksi/create', [TransaksiController::class, 'create'])->name('transaksi.create');
+Route::post('/transaksi', [TransaksiController::class, 'store'])->name('transaksi.store');
+Route::get('/transaksi/{id}/edit', [TransaksiController::class, 'edit'])->name('transaksi.edit');
+Route::put('/transaksi/{id}', [TransaksiController::class, 'update'])->name('transaksi.update');
+Route::delete('/transaksi/{id}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy');
 
 
 

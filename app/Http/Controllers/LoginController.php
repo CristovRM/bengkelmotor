@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function showLoginForm()
+    public function index()
     {
         return view('login');
     }
@@ -14,23 +15,34 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'username' => 'required',
+            'email' => 'required',
             'password' => 'required',
+        ], [
+            'email.required' => 'Email Wajib Diisi',
+            'password.required' => 'Password Wajib Diisi',
         ]);
 
-        $credentials = $request->only('username', 'password');
-
-        // Data pengguna statis
-        $staticUsers = [
-            'Admin' => 'kelompokd',
+        $infologin = [
+            'email' => $request->email,
+            'password' => $request->password,
         ];
 
-        // Memeriksa apakah kredensial yang diberikan sesuai dengan data statis
-        if (isset($staticUsers[$credentials['username']]) && $staticUsers[$credentials['username']] === $credentials['password']) {
-            // Simulasi autentikasi berhasil
-            return redirect()->intended('dashboard');
-        }
+        if (Auth::attempt($infologin)) {
+            if (Auth::user()->role == 'admin') {
+                return redirect()->route('dashboard');
+                
+            } elseif (Auth::user()->role == 'kasir') {
+                return redirect()->route('kasir.dashboard');
+            }
 
-        return redirect()->back()->with('error', 'Username atau password salah.');
+        } else {
+            return redirect('login')->withErrors('Username dan Password yang dimasukkan tidak sesuai')->withinput();
+        }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
     }
 }
