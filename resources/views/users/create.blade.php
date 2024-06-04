@@ -32,19 +32,16 @@
         </div>
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="password_confirmation">Konfirmasi Password:</label>
-            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="password" name="password_confirmation" required>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="password" id="password-confirmation" name="password_confirmation" required>
         </div>
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="roles">Role:</label>
-            <select name="roles" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
-                <option value="">Select Role</option>
-                @foreach($roles as $role)
-                        <option value="{{ $role->id }}">{{ $role->role_name }}</option>
-                    @endforeach
-            </select>
-            @error('role')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
+            <select name="roles[]" id="roles" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" multiple required>
+                
+                <option value="admin">Admin</option>
+                <option value="kasir">Kasir</option>
+        </select>
+            
         </div>
         <div class="flex items-center justify-between">
             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Simpan</button>

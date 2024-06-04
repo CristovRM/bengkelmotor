@@ -1,4 +1,3 @@
-<!-- resources/views/users/index.blade.php -->
 @extends('layouts.app')
 
 @include('dashboard')
@@ -26,7 +25,7 @@
                         <td class="py-3 px-6 text-left">{{ $user->id }}</td>
                         <td class="py-3 px-6 text-left">{{ $user->name }}</td>
                         <td class="py-3 px-6 text-left">{{ $user->email }}</td>
-                        <td class="py-3 px-6 text-left">{{  optional($user->role)->role_name }}</td>
+                        <td class="py-3 px-6 text-left">{{ $user->role }}</td>
                         <td class="py-3 px-6 text-center">
                             <a href="{{ route('users.edit', $user->id) }}" class="bg-yellow-400 text-black py-1 px-3 rounded hover:bg-yellow-500 transition duration-300 inline-block">Edit</a>
                             <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline-block">

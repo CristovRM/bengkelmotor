@@ -13,12 +13,8 @@ use App\Http\Controllers\KasirController;
 use App\Http\Controllers\UserController;
 
 
-Route::get('/users', [UserController::class, 'index'])->name('users.index');
-Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-Route::post('/users', [UserController::class, 'store'])->name('users.store');
-Route::get('/users/{users}/edit', [UserController::class, 'edit'])->name('users.edit');
-Route::put('/users/{users}', [UserController::class, 'update'])->name('users.update');
-Route::delete('/users/{users}', [UserController::class, 'destroy'])->name('users.destroy');
+Route::resource('users', UserController::class);
+
 
 
 
@@ -107,6 +103,12 @@ Route::post('/transaksi', [TransaksiController::class, 'store'])->name('transaks
 Route::get('/transaksi/{id}/edit', [TransaksiController::class, 'edit'])->name('transaksi.edit');
 Route::put('/transaksi/{id}', [TransaksiController::class, 'update'])->name('transaksi.update');
 Route::delete('/transaksi/{id}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy');
+
+Route::middleware(['auth', 'checkRole:admin,kasir'])->group(function () {
+    Route::get('/laporan', [TransaksiController::class, 'laporan'])->name('laporan');
+    Route::get('/laporan.pdf', [TransaksiController::class, 'laporanPDF'])->name('laporan.pdf');
+
+});
 
 
 

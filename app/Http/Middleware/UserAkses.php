@@ -13,7 +13,7 @@ class UserAkses
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next , $role): Response
+    public function handle(Request $request, Closure $next, $role): Response
     {
         if (auth()->role == $role){
             return $next($request);

@@ -43,7 +43,7 @@
 
         <div class="flex justify-end">
             <a href="{{ route('transaksi.index') }}" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600">Batal</a>
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 ml-4">Simpan</button>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 ml-4">Simpan Perubahan</button>
         </div>
     </form>
 </div>

@@ -1,5 +1,3 @@
-<!-- resources/views/supplier/create.blade.php -->
-
 @extends('layouts.app')
 
 @include('dashboard')

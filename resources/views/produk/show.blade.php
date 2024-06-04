@@ -1,5 +1,3 @@
-<!-- resources/views/produk/show.blade.php -->
-
 @extends('layouts.app')
 
 @include('dashboard')
@@ -9,7 +7,7 @@
 @section('content')
 <div class="container mx-auto px-4 py-8" style="width: 800px;">
     <h1 class="text-2xl font-bold mb-4">Detail Produk</h1>
-    <div class="mb-4">
+    <div>
         <p><strong>Nama Produk:</strong> {{ $produk->nama_produk }}</p>
         @if ($produk->kategori)
             <p><strong>Kategori:</strong> {{ $produk->kategori->nama_kategori }}</p>

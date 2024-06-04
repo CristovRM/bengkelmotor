@@ -26,15 +26,16 @@
             <label class="block text-gray-700 text-sm font-bold mb-2" for="password_confirmation">Confirm Password:</label>
             <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="password" name="password_confirmation">
         </div>
-        <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="role">Role:</label>
-            <select name="role" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
-                <option value="">Select Role</option>
+        <d<div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="roles">Role:</label>
+            <select name="roles[]" id="roles" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" multiple required>
+                <!-- multiple attribute agar bisa memilih lebih dari satu peran -->
                 @foreach($roles as $role)
-                    <option value="{{ $role->role_name }}" {{ old('role') == $role->role_name ? 'selected' : '' }}>{{ $role->name }}</option>
+                    <option value="{{ $role->id }}">{{ $role->role }}</option>
                 @endforeach
             </select>
-            @error('role')
+            @error('roles')
+                <!-- Error message harus menggunakan 'roles', karena nama field-nya adalah 'roles' -->
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>

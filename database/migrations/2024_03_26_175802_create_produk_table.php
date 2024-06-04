@@ -22,7 +22,7 @@ class CreateProdukTable extends Migration
             $table->integer('harga_beli');
             $table->tinyInteger('diskon')->default(0);
             $table->integer('harga_jual');
-            $table->integer('stok');
+            $table->integer('stok')->default(0);
             $table->timestamps();
 
             // Add foreign key constraint
@@ -38,6 +38,8 @@ class CreateProdukTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('produk');
+        Schema::table('produk', function (Blueprint $table) {
+            $table->dropColumn('stok');
+        });
     }
 }

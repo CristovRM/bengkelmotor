@@ -35,17 +35,17 @@
                             <td class="py-3 px-6 text-left">{{ optional($item->kategori)->nama_kategori }}</td>
                             <td class="py-3 px-6 text-left">{{ optional($item->supplier)->nama_supplier }}</td>
                             <td class="py-3 px-6 text-left">{{ $item->merk }}</td>
-                            <td class="py-3 px-6 text-left">{{ $item->harga_beli }}</td>
-                            <td class="py-3 px-6 text-left">{{ $item->harga_jual }}</td>
+                            <td class="py-3 px-6 text-left">{{ formatRupiah($item->harga_beli) }}</td>
+                            <td class="py-3 px-6 text-left">{{ formatRupiah($item->harga_jual) }}</td>
                             <td class="py-3 px-6 text-left">{{ $item->diskon }}</td>
                             <td class="py-3 px-6 text-left">{{ $item->stok }}</td>
                             <td class="py-3 px-6 text-center">
-                                <a href="{{ route('produk.show', $item->id_produk) }}" class="mr-2 text-blue-600 hover:text-blue-900">Detail</a>
-                                <a href="{{ route('produk.edit', $item->id_produk) }}" class="mr-2 text-indigo-600 hover:text-blue-900">Edit</a>
+                                <a href="{{ route('produk.show', $item->id_produk) }}" class="bg-blue-500 text-white px-1 py-1 rounded hover:bg-blue-600">Detail</a>
+                                <a href="{{ route('produk.edit', $item->id_produk) }}" class="bg-yellow-500 text-white px-1 py-1 rounded hover:bg-yellow-600">Edit</a>
                                 <form action="{{ route('produk.destroy', $item->id_produk) }}" method="POST" style="display:inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini?')">Hapus</button>
+                                    <button type="submit" class="bg-red-500 text-white px-1 py-1 rounded hover:bg-red-600" onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini?')">Hapus</button>
                                 </form>
                             </td>
                         </tr>

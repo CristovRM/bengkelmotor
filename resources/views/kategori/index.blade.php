@@ -12,8 +12,8 @@
             <table class="w-full table-auto">
                 <thead>
                     <tr class="bg-gray-200 text-gray-100 uppercase text-sm leading-normal">
-                        <th class="py-3 px-6 text-left">id_kategori</th>
-                        <th class="py-3 px-6 text-left">Nama_Kategori</th>
+                        <th class="py-3 px-6 text-left">Id kategori</th>
+                        <th class="py-3 px-6 text-left">Nama Kategori</th>
                         <th class="py-3 px-6 text-center">Aksi</th>
                     </tr>
                 </thead>

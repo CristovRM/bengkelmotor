@@ -9,7 +9,7 @@
         <div class="w-full max-w-md mx-auto bg-white rounded-lg overflow-hidden">
             <div class="px-6 py-4">
                 <h1 class="text-2xl font-bold mb-4">Edit Kategori</h1>
-                <form action="{{ route('kategori.update', $kategori->id_kategori) }}" method="POST">
+                <form action="{{ route('kategori.update', $kategori->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="mb-4">

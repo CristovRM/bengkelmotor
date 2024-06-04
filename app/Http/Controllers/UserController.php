@@ -27,7 +27,7 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
             'roles' => 'required|array',
-            
+            'roles.*' => 'in:admin,kasir',
         ]);
 
         if ($validator->fails()) {
@@ -40,10 +40,13 @@ class UserController extends Controller
             'name' => $request->get('name'),
             'email' => $request->get('email'),
             'password' => bcrypt($request->get('password')),
-            
         ]);
 
-       $user->save();
+        $user->save();
+        $user->roles()->sync($request->roles);
+
+
+       
 
         return redirect()->route('users.index')->with('success', 'User created successfully.');
     }
@@ -59,10 +62,15 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $id,
             'password' => 'nullable|string|min:8|confirmed',
-            'roles' => 'required',
+            'roles' => 'required|array',
+            'roles.*' => 'in:admin,kasir',
         ]);
 
-        
+        if ($validator->fails()) {
+            return redirect()->route('users.edit', $id)
+                             ->withErrors($validator)
+                             ->withInput();
+        }
 
         $user = User::findOrFail($id);
         $user->update([

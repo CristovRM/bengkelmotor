@@ -31,8 +31,8 @@
                     <tr class="hover:bg-gray-100">
                         <td class="py-3 px-4 border-b border-gray-300">{{ $trx->id }}</td>
                         <td class="py-3 px-4 border-b border-gray-300">{{ $trx->produk->nama_produk }}</td>
-                        <td class="py-3 px-4 border-b border-gray-300">{{ $trx->jumlah }}</td>
-                        <td class="py-3 px-4 border-b border-gray-300">{{ $trx->total_harga }}</td>
+                        <td class="py-3 px-4 border-b border-gray-300">{{ number_format($trx->jumlah, 0, ',', '.') }}</td>
+                        <td class="py-3 px-4 border-b border-gray-300">Rp {{ number_format($trx->total_harga, 0, ',', '.') }}</td>
                         <td class="py-3 px-4 border-b border-gray-300">
                             <a href="{{ route('transaksi.edit', $trx->id) }}" class="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600">Edit</a>
                             <form action="{{ route('transaksi.destroy', $trx->id) }}" method="POST" class="inline-block">

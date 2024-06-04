@@ -1,5 +1,3 @@
-<!-- resources/views/produk/edit.blade.php -->
-
 @extends('layouts.app')
 
 @include('dashboard')

@@ -9,6 +9,8 @@ class KategoriController extends Controller
 {
     public function index()
     {
+        $response = Http::get('http//localhost:8000/kategori');
+        $kategori = $response->json();
         $kategori = Kategori::all();
         return view('kategori.index', compact('kategori'));
     }

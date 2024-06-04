@@ -17,9 +17,9 @@
                             <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
                         </svg>
                     </button>
-                    <a href="#" class="flex ms-2 md:me-24">
+                    <a href="{{ route('login') }}" class="flex ms-2 md:me-24">
                         <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 me-3" alt="FlowBite Logo" />
-                        <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Sistem Informasi Bengkel Motor</span>
+                        <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Sistem Informasi Kasir Bengkel Motor</span>
                     </a>
                 </div>
                 <div class="flex items-center">
@@ -35,13 +35,7 @@
                             </div>
                             <ul class="py-1" role="none">
                                 <li>
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Dashboard</a>
-                                </li>
-                                <li>
                                     <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Settings</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Earnings</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</a>
@@ -58,18 +52,9 @@
         <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
             <ul class="space-y-2 font-medium">
                 <li>
-                    <a href="dashboard" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
-                            <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z"/>
-                            <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"/>
-                        </svg>
-                        <span class="ms-3">Dashboard</span>
-                    </a>
-                </li>
-                <li>
                     <a href="{{ route('transaksi.index')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
-                            <path d="M16 2h-1.5V.5a.5.5 0 0 0-1 0V2h-6V.5a.5.5 0 0 0-1 0V2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM4 4h12v4H4zm0 6h12v4H4z"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 21.818C6.627 21.818 2.182 17.373 2.182 12S6.627 2.182 12 2.182 21.818 6.627 21.818 12 17.373 21.818 12 21.818zm.818-15.636h-1.636v6.364l4.727 2.8.818-1.364-3.909-2.318V6.182z"/>
                         </svg>
                         <span class="flex-1 ms-3 whitespace-nowrap">Transaksi</span>
                     </a>

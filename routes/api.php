@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\KategoriController;
 use App\Http\Controllers\Api\SupplierController;
 use App\Http\Controllers\Api\ProdukController;
 
@@ -22,12 +21,6 @@ use App\Http\Controllers\Api\ProdukController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::get('kategori', [KategoriController::class, 'index']);
-Route::get('kategori/{id}', [KategoriController::class, 'show']);
-Route::post('kategori', [KategoriController::class, 'store']);
-Route::put('kategori/{id}', [KategoriController::class, 'update']);
-Route::delete('kategori/{id}', [KategoriController::class, 'destroy']);
 
 Route::get('supplier', [SupplierController::class, 'index']);
 Route::get('supplier/{id}', [SupplierController::class, 'show']);

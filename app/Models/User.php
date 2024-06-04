@@ -61,7 +61,13 @@ class User extends Authenticatable
         return $query->where('level', '!=', 1);
     }
 
-    public function roles() {
-        return $this->belongsToMany(Role::class);
+    public function roles()
+{
+    return $this->belongsToMany(Role::class,'role_user');
+}
+
+    public function transaksi()
+    {
+        return $this->hasMany(Transaksi::class);
     }
 }
