@@ -25,7 +25,7 @@ class ProdukController extends Controller
        $dataProduk = new Produk;
 
        $rules = [
-        'id' => 'required',
+        'id_kategori' => 'required',
         'id_supplier' => 'required',
         'nama_produk' => 'required',
         'merk' => 'required',
@@ -46,7 +46,7 @@ class ProdukController extends Controller
         
        }
        
-       $dataProduk->id = $request->id;
+       $dataProduk->id_kategori = $request->id_kategori;
        $dataProduk->id_supplier = $request->id_supplier;
        $dataProduk->nama_produk = $request->nama_produk;
        $dataProduk->merk = $request->merk;
