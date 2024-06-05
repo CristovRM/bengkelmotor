@@ -31,7 +31,7 @@
             <select name="roles[]" id="roles" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" multiple required>
                 <!-- multiple attribute agar bisa memilih lebih dari satu peran -->
                 @foreach($roles as $role)
-                    <option value="{{ $role->id }}">{{ $role->role }}</option>
+                    <option value="{{ $role->role }}">{{ $role->role }}</option>
                 @endforeach
             </select>
             @error('roles')

@@ -27,7 +27,7 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
             'roles' => 'required|array',
-            'roles.*' => 'in:admin,kasir',
+            'roles.*' => 'exists:roles,role',
         ]);
 
         if ($validator->fails()) {
@@ -40,6 +40,7 @@ class UserController extends Controller
             'name' => $request->get('name'),
             'email' => $request->get('email'),
             'password' => bcrypt($request->get('password')),
+            'role' => $request->get('roles')
         ]);
 
         $user->save();
@@ -63,7 +64,7 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users,email,' . $id,
             'password' => 'nullable|string|min:8|confirmed',
             'roles' => 'required|array',
-            'roles.*' => 'in:admin,kasir',
+            'roles.*' => 'exists:roles,name',
         ]);
 
         if ($validator->fails()) {
