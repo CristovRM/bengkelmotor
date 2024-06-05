@@ -43,7 +43,7 @@ class UserController extends Controller
             'role' => $request->get('roles')
         ]);
 
-        $user->save();
+        
         $user->roles()->sync($request->roles);
 
 
