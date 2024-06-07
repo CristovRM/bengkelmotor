@@ -3,34 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Supplier;
-use App\Models\Produk;
+use Illuminate\Support\Facades\Http;
 
 class SupplierController extends Controller
 {
     public function index()
     {
-        $supplier = Supplier::all();
-        return view('supplier.index', compact('supplier'));
-    }
+        try {
+            $response = Http::get('http://127.0.0.1:8000/api/supplier');
+            $data = $response->json();
 
-    public function data()
-    {
-        $supplier = Supplier::orderBy('id_supplier', 'desc')->get();
-
-        return datatables()
-            ->of($supplier)
-            ->addIndexColumn()
-            ->addColumn('aksi', function ($supplier) {
-                return '
-                <div class="btn-group">
-                    <button type="button" onclick="editForm(`'. route('supplier.update', $supplier->id_supplier) .'`)" class="btn btn-xs btn-info btn-flat"><i class="fa fa-pencil"></i></button>
-                    <button type="button" onclick="deleteData(`'. route('supplier.destroy', $supplier->id_supplier) .'`)" class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash"></i></button>
-                </div>
-                ';
-            })
-            ->rawColumns(['aksi'])
-            ->make(true);
+            if ($response->successful() && $data['status']) {
+                $supplier = $data['data'];
+                return view('supplier.index', compact('supplier'));
+            } else {
+                return view('supplier.index')->withErrors(['msg' => 'Gagal mengambil data supplier.']);
+            }
+        } catch (\Exception $e) {
+            return view('supplier.index')->withErrors(['msg' => 'Terjadi kesalahan: ' . $e->getMessage()]);
+        }
     }
 
     public function create()
@@ -40,57 +31,85 @@ class SupplierController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nama_supplier' => 'required',
-            'alamat'=> 'required',
-        ]);
 
-        $supplier = new Supplier();
-        $supplier->nama_supplier = $request->nama_supplier;
-        $supplier->alamat = $request->alamat;
+        try {
+            $response = Http::post('http://127.0.0.1:8000/api/supplier', $request->all());
+            $data = $response->json();
 
-        if ($supplier->save()) {
-            return redirect()->route('supplier.index')->with('success', 'Supplier berhasil ditambahkan.');
-        } else {
-            return back()->withInput()->withErrors('Gagal menambahkan supplier.');
+            if ($response->successful() && $data['status']) {
+                return redirect()->route('supplier.index')->with('success', 'Supplier berhasil ditambahkan.');
+            } else {
+                return redirect()->route('supplier.create')->withErrors(['msg' => 'Gagal menambahkan supplier.']);
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('supplier.create')->withErrors(['msg' => 'Terjadi kesalahan: ' . $e->getMessage()]);
         }
     }
 
-    public function show($id_supplier)
+    public function show($id)
     {
-        $supplier = Supplier::findOrFail($id_supplier);
-        $produk = $supplier->id_produk; // Mendapatkan produk yang dimiliki oleh supplier
-        return view('supplier.show', compact('supplier', 'produk'));
-    }
+        try {
+            $response = Http::get("http://127.0.0.1:8000/api/supplier/{$id}");
+            $data = $response->json();
 
-    public function edit($id_supplier)
-    {
-        $supplier = Supplier::findOrFail($id_supplier);
-        return view('supplier.edit', compact('supplier'));
-    }
-
-    public function update(Request $request, $id_supplier)
-    {
-        $request->validate([
-            'nama_supplier' => 'required',
-            'alamat'=> 'required',
-        ]);
-
-        $supplier = Supplier::findOrFail($id_supplier);
-        $supplier->nama_supplier = $request->nama_supplier;
-        $supplier->alamat = $request->alamat;
-
-        if ($supplier->save()) {
-            return redirect()->route('supplier.index')->with('success', 'Supplier berhasil diperbarui.');
-        } else {
-            return back()->withInput()->withErrors('Gagal memperbarui supplier.');
+            if ($response->successful() && $data['status']) {
+                $supplier = $data['data'];
+                return view('supplier.show', compact('supplier' , 'produk'));
+            } else {
+                return redirect()->route('supplier.index')->withErrors(['msg' => 'Supplier tidak ditemukan.']);
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('supplier.index')->withErrors(['msg' => 'Terjadi kesalahan: ' . $e->getMessage()]);
         }
     }
 
-    public function destroy($id_supplier)
+    public function edit($id)
     {
-        $supplier = Supplier::findOrFail($id_supplier);
-        $supplier->delete();
-        return redirect()->route('supplier.index')->with('success', 'Supplier berhasil dihapus.');
+        try {
+            $response = Http::get("http://127.0.0.1:8000/api/supplier/{$id}");
+            $data = $response->json();
+
+            if ($response->successful() && $data['status']) {
+                $supplier = $data['data'];
+                return view('supplier.edit', compact('supplier'));
+            } else {
+                return redirect()->route('supplier.index')->withErrors(['msg' => 'Supplier tidak ditemukan.']);
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('supplier.index')->withErrors(['msg' => 'Terjadi kesalahan: ' . $e->getMessage()]);
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+
+        try {
+            $response = Http::put("http://127.0.0.1:8000/api/supplier/{$id}", $request->all());
+            $data = $response->json();
+
+            if ($response->successful() && $data['status']) {
+                return redirect()->route('supplier.index')->with('success', 'Supplier berhasil diperbarui.');
+            } else {
+                return redirect()->route('supplier.edit', $id)->withErrors(['msg' => 'Gagal memperbarui supplier.']);
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('supplier.edit', $id)->withErrors(['msg' => 'Terjadi kesalahan: ' . $e->getMessage()]);
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $response = Http::delete("http://127.0.0.1:8000/api/supplier/{$id}");
+            $data = $response->json();
+
+            if ($response->successful() && $data['status']) {
+                return redirect()->route('supplier.index')->with('success', 'Supplier berhasil dihapus.');
+            } else {
+                return redirect()->route('supplier.index')->withErrors(['msg' => 'Gagal menghapus supplier.']);
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('supplier.index')->withErrors(['msg' => 'Terjadi kesalahan: ' . $e->getMessage()]);
+        }
     }
 }

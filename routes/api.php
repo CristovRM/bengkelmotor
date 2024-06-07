@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Api\KategoriController;
+use App\Http\Controllers\Api\ProdukController;
+use App\Http\Controllers\Api\SupplierController;
+use App\Http\Controllers\Api\MemberController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\SupplierController;
-use App\Http\Controllers\Api\ProdukController;
 
 
 
@@ -17,19 +19,16 @@ use App\Http\Controllers\Api\ProdukController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('supplier', [SupplierController::class, 'index']);
-Route::get('supplier/{id}', [SupplierController::class, 'show']);
-Route::post('supplier', [SupplierController::class, 'store']);
-Route::put('supplier/{id}', [SupplierController::class, 'update']);
-Route::delete('supplier/{id}', [SupplierController::class, 'destroy']);
 
-Route::get('produk', [ProdukController::class, 'index']);
-Route::get('produk/{id}', [ProdukController::class, 'show']);
-Route::post('produk', [ProdukController::class, 'store']);
-Route::put('produk/{id}', [ProdukController::class, 'update']);
-Route::delete('produk/{id}', [ProdukController::class, 'destroy']);
+Route::ApiResource('kategori',KategoriController::class,);
+
+Route::ApiResource('produk',ProdukController::class,);
+
+Route::ApiResource('supplier',SupplierController::class,);
+
+Route::ApiResource('member',MemberController::class,);
+

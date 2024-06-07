@@ -88,12 +88,12 @@ class TransaksiController extends Controller
         return redirect()->route('transaksi.index')->with('success', 'Transaksi berhasil disimpan.');
     }
 
-    public function edit($id)
-    {
-        $transaksi = Transaksi::findOrFail($id);
-        $produk = Produk::all();
-        return view('transaksi.edit', compact('transaksi', 'produk'));
-    }
+    public function show($id)
+{
+    $transaksi = Transaksi::with('produk')->findOrFail($id);
+    return view('transaksi.show', compact('transaksi'));
+}
+
 
     public function update(Request $request, $id)
     {
@@ -141,24 +141,5 @@ class TransaksiController extends Controller
         return redirect()->route('transaksi.index')->with('success', 'Transaksi berhasil diperbarui');
     }
 
-    public function destroy($id)
-    {
-        $transaksi = Transaksi::findOrFail($id);
-        $produk = Produk::findOrFail($transaksi->id_produk);
-
-        // Debugging statements
-        \Log::info('Stok sebelum pengembalian: ' . $produk->stok);
-        \Log::info('Jumlah transaksi: ' . $transaksi->jumlah);
-
-        // Kembalikan stok produk
-        $produk->stok += $transaksi->jumlah;
-        $produk->save();
-
-        // Debugging statements
-        \Log::info('Stok setelah pengembalian: ' . $produk->stok);
-
-        $transaksi->delete();
-
-        return redirect()->route('transaksi.index')->with('success', 'Transaksi berhasil dihapus');
-    }
+    
 }

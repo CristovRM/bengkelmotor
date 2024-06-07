@@ -3,57 +3,122 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Kategori;
+use Illuminate\Support\Facades\Http;
 
 class KategoriController extends Controller
 {
+    // Menampilkan semua kategori
     public function index()
     {
-        $kategori = Kategori::all();
-        return view('kategori.index', compact('kategori'));
+        try {
+            $response = Http::get('http://127.0.0.1:8000/api/kategori');
+            $data = $response->json();
+
+            if ($response->successful() && $data['status']) {
+                $kategori = $data['data'];
+                return view('kategori.index', compact('kategori'));
+            } else {
+                return view('kategori.index')->withErrors(['msg' => 'Gagal mengambil data kategori.']);
+            }
+        } catch (\Exception $e) {
+            return view('kategori.index')->withErrors(['msg' => 'Terjadi kesalahan: ' . $e->getMessage()]);
+        }
     }
 
+    // Menampilkan form untuk menambah kategori baru
     public function create()
     {
         return view('kategori.create');
     }
 
+    // Menyimpan kategori baru ke database
     public function store(Request $request)
     {
-        $request->validate([
-            'nama_kategori' => 'required|unique:kategori|max:255',
-        ]);
+        // Lakukan validasi request jika diperlukan
 
-        Kategori::create($request->all());
+        try {
+            $response = Http::post('http://127.0.0.1:8000/api/kategori', $request->all());
+            $data = $response->json();
 
-        return redirect()->route('kategori.index')->with('success', 'Kategori added successfully!');
+            if ($response->successful() && $data['status']) {
+                return redirect()->route('kategori.index')->with('success', 'Kategori berhasil ditambahkan.');
+            } else {
+                return redirect()->route('kategori.create')->withErrors(['msg' => 'Gagal menambahkan kategori.']);
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('kategori.create')->withErrors(['msg' => 'Terjadi kesalahan: ' . $e->getMessage()]);
+        }
     }
 
-    public function show(Kategori $kategori)
+    // Menampilkan detail kategori
+    public function show($id)
     {
-        return view('kategori.show', compact('kategori'));
+        try {
+            $response = Http::get("http://127.0.0.1:8000/api/kategori/{$id}");
+            $data = $response->json();
+
+            if ($response->successful() && $data['status']) {
+                $kategori = $data['data'];
+                return view('kategori.show', compact('kategori'));
+            } else {
+                return redirect()->route('kategori.index')->withErrors(['msg' => 'Kategori tidak ditemukan.']);
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('kategori.index')->withErrors(['msg' => 'Terjadi kesalahan: ' . $e->getMessage()]);
+        }
     }
 
-    public function edit(Kategori $kategori)
+    // Menampilkan form untuk mengedit kategori
+    public function edit($id)
     {
-        return view('kategori.edit', compact('kategori'));
+        try {
+            $response = Http::get("http://127.0.0.1:8000/api/kategori/{$id}");
+            $data = $response->json();
+
+            if ($response->successful() && $data['status']) {
+                $kategori = $data['data'];
+                return view('kategori.edit', compact('kategori'));
+            } else {
+                return redirect()->route('kategori.index')->withErrors(['msg' => 'Kategori tidak ditemukan.']);
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('kategori.index')->withErrors(['msg' => 'Terjadi kesalahan: ' . $e->getMessage()]);
+        }
     }
 
-    public function update(Request $request, Kategori $kategori)
+    // Menyimpan perubahan pada kategori ke database
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'nama_kategori' => 'required|max:255',
-        ]);
+        // Lakukan validasi request jika diperlukan
 
-        $kategori->update($request->all());
+        try {
+            $response = Http::put("http://127.0.0.1:8000/api/kategori/{$id}", $request->all());
+            $data = $response->json();
 
-        return redirect()->route('kategori.index')->with('success', 'Kategori updated successfully!');
+            if ($response->successful() && $data['status']) {
+                return redirect()->route('kategori.index')->with('success', 'Kategori berhasil diperbarui.');
+            } else {
+                return redirect()->route('kategori.edit', $id)->withErrors(['msg' => 'Gagal memperbarui kategori.']);
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('kategori.edit', $id)->withErrors(['msg' => 'Terjadi kesalahan: ' . $e->getMessage()]);
+        }
     }
 
-    public function destroy(kategori $kategori)
+    // Menghapus kategori dari database
+    public function destroy($id)
     {
-        $kategori->delete();
+        try {
+            $response = Http::delete("http://127.0.0.1:8000/api/kategori/{$id}");
+            $data = $response->json();
 
-        return redirect()->route('kategori.index')->with('success', 'Kategori deleted successfully!');
+            if ($response->successful() && $data['status']) {
+                return redirect()->route('kategori.index')->with('success', 'Kategori berhasil dihapus.');
+            } else {
+                return redirect()->route('kategori.index')->withErrors(['msg' => 'Gagal menghapus kategori.']);
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('kategori.index')->withErrors(['msg' => 'Terjadi kesalahan: ' . $e->getMessage()]);
+        }
     }
 }

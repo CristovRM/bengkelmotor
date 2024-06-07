@@ -44,7 +44,13 @@ class UserController extends Controller
         ]);
 
         
-        $user->roles()->sync($request->roles);
+        $user->save();
+
+    // Retrieve role IDs
+    $roleIds = Role::whereIn('role', $request->roles)->pluck('id')->toArray();
+    
+    // Attach roles using IDs
+    $user->roles()->sync($roleIds);
 
 
        

@@ -34,12 +34,7 @@
                         <td class="py-3 px-4 border-b border-gray-300">{{ number_format($trx->jumlah, 0, ',', '.') }}</td>
                         <td class="py-3 px-4 border-b border-gray-300">Rp {{ number_format($trx->total_harga, 0, ',', '.') }}</td>
                         <td class="py-3 px-4 border-b border-gray-300">
-                            <a href="{{ route('transaksi.edit', $trx->id) }}" class="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600">Edit</a>
-                            <form action="{{ route('transaksi.destroy', $trx->id) }}" method="POST" class="inline-block">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600" onclick="return confirm('Apakah Anda yakin ingin menghapus transaksi ini?')">Hapus</button>
-                            </form>
+                            <a href="{{ route('transaksi.show', $trx->id) }}" class="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600">Detail</a>
                         </td>
                     </tr>
                 @endforeach
