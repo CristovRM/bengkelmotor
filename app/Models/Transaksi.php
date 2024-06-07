@@ -13,6 +13,7 @@ class Transaksi extends Model
         'id_produk',
         'jumlah',
         'total_harga',
+        'nama_pembeli',
     ];
 
     public function produk()

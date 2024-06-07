@@ -11,6 +11,7 @@
 
     <div class="mt-6 bg-white p-6 rounded-lg shadow-md border border-gray-300">
         <h2 class="text-xl font-semibold mb-4">ID Transaksi: {{ $transaksi->id }}</h2>
+        <p class="text-lg mb-2"><strong>Nama Pembeli:</strong> {{ $transaksi->nama_pembeli }}</p>
         <p class="text-lg mb-2"><strong>Nama Produk:</strong> {{ $transaksi->produk->nama_produk }}</p>
         <p class="text-lg mb-2"><strong>Jumlah:</strong> {{ number_format($transaksi->jumlah, 0, ',', '.') }}</p>
         <p class="text-lg mb-2"><strong>Total Harga:</strong> Rp {{ number_format($transaksi->total_harga, 0, ',', '.') }}</p>

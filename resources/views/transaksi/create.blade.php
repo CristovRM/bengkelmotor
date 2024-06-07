@@ -21,6 +21,10 @@
     <form action="{{ route('transaksi.store') }}" method="POST">
         @csrf
         <div class="mb-4">
+            <label for="nama_pembeli" class="block text-gray-700 text-sm font-bold mb-2">Nama Pembeli</label>
+            <input type="text" name="nama_pembeli" id="nama_pembeli" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ old('nama_pembeli') }}">
+        </div>
+        <div class="mb-4">
             <label for="id_produk" class="block text-gray-700 text-sm font-bold mb-2">Produk</label>
             <select name="id_produk" id="id_produk" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                 @foreach ($produk as $item)
@@ -30,7 +34,7 @@
         </div>
         <div class="mb-4">
             <label for="jumlah" class="block text-gray-700 text-sm font-bold mb-2">Jumlah</label>
-            <input type="number" name="jumlah" id="jumlah" min ="1" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ old('jumlah') }}">
+            <input type="number" name="jumlah" id="jumlah" min="1" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ old('jumlah') }}">
         </div>
         <div class="mb-4">
             <label for="total_harga" class="block text-gray-700 text-sm font-bold mb-2">Total Harga</label>

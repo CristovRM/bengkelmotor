@@ -56,6 +56,7 @@ class TransaksiController extends Controller
             'id_produk' => 'required|exists:produk,id_produk',
             'jumlah' => 'required|integer|min:1',
             'total_harga' => 'required|numeric',
+            'nama_pembeli' => 'required|string',
         ]);
 
         $userid = auth()->id();
@@ -83,6 +84,7 @@ class TransaksiController extends Controller
             'id_produk' => $request->id_produk,
             'jumlah' => $request->jumlah,
             'total_harga' => $request->total_harga,
+            'nama_pembeli' => $request->nama_pembeli,
         ]);
 
         return redirect()->route('transaksi.index')->with('success', 'Transaksi berhasil disimpan.');

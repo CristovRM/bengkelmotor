@@ -20,6 +20,7 @@
             <thead>
                 <tr class="w-full bg-gray-200 text-left text-gray-700 uppercase text-sm leading-normal">
                     <th class="py-3 px-4 border-b border-gray-300">ID</th>
+                    <th class="py-3 px-4 border-b border-gray-300">Nama Pembeli</th>
                     <th class="py-3 px-4 border-b border-gray-300">Nama Produk</th>
                     <th class="py-3 px-4 border-b border-gray-300">Jumlah</th>
                     <th class="py-3 px-4 border-b border-gray-300">Total Harga</th>
@@ -30,6 +31,7 @@
                 @foreach ($transaksi as $trx)
                     <tr class="hover:bg-gray-100">
                         <td class="py-3 px-4 border-b border-gray-300">{{ $trx->id }}</td>
+                        <td class="py-3 px-4 border-b border-gray-300">{{ $trx->nama_pembeli }}</td>
                         <td class="py-3 px-4 border-b border-gray-300">{{ $trx->produk->nama_produk }}</td>
                         <td class="py-3 px-4 border-b border-gray-300">{{ number_format($trx->jumlah, 0, ',', '.') }}</td>
                         <td class="py-3 px-4 border-b border-gray-300">Rp {{ number_format($trx->total_harga, 0, ',', '.') }}</td>
