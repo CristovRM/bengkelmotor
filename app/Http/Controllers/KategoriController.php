@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Http;
 
 class KategoriController extends Controller
 {
-    // Menampilkan semua kategori
     public function index()
     {
         try {
@@ -25,16 +24,13 @@ class KategoriController extends Controller
         }
     }
 
-    // Menampilkan form untuk menambah kategori baru
     public function create()
     {
         return view('kategori.create');
     }
 
-    // Menyimpan kategori baru ke database
     public function store(Request $request)
     {
-        // Lakukan validasi request jika diperlukan
 
         try {
             $response = Http::post('http://127.0.0.1:8000/api/kategori', $request->all());
@@ -68,7 +64,6 @@ class KategoriController extends Controller
         }
     }
 
-    // Menampilkan form untuk mengedit kategori
     public function edit($id)
     {
         try {
@@ -86,10 +81,8 @@ class KategoriController extends Controller
         }
     }
 
-    // Menyimpan perubahan pada kategori ke database
     public function update(Request $request, $id)
     {
-        // Lakukan validasi request jika diperlukan
 
         try {
             $response = Http::put("http://127.0.0.1:8000/api/kategori/{$id}", $request->all());
@@ -105,7 +98,6 @@ class KategoriController extends Controller
         }
     }
 
-    // Menghapus kategori dari database
     public function destroy($id)
     {
         try {

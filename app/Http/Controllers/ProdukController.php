@@ -9,74 +9,114 @@ class ProdukController extends Controller
 {
     public function index()
     {
-        $response = Http::get('http://127.0.0.1:8000/api/produk');
-        $produk = $response->json();
+        $response = Http::timeout(5)->get('http://127.0.0.1:8000/api/produk');
+        $produk = json_decode($response->body(), true)['data'] ?? [];
         return view('produk.index', compact('produk'));
     }
 
     public function create()
     {
-
-        return view('produk.create', compact('kategori', 'supplier'));
+        $supplier = $this->getSupplier();
+        $kategori = $this->getKategori();
+        return view('produk.create', compact('supplier' , 'kategori'));
     }
 
     public function store(Request $request)
     {
-        $response = Http::post('http://127.0.0.1:8000/api/produk', $request->all());
-        $data = $response->json();
+        $validatedData = $request->validate([
+            'nama_kategori' => 'required',
+            'nama_supplier' => 'required',
+            'nama_produk' => 'required',
+            'merk' => 'required',
+            'harga_beli' => 'required|numeric',
+            'diskon' => 'required',  
+            'harga_jual' => 'required|numeric',          
+            'stok' => 'required|numeric',
+        ]);
+
+        $response = Http::timeout(5)->post('http://127.0.0.1:8000/api/produk', $validatedData);
+        $data = json_decode($response->body(), true);
 
         if ($response->successful() && $data['status']) {
-            return redirect()->route('produk.index')->with('success', 'Produk berhasil disimpan.');
+            return redirect()->route('produk.index')->with('success', 'Produk berhasil ditambahkan.');
         } else {
-            return redirect()->route('produk.index')->withErrors(['msg' => 'Gagal menyimpan produk.']);
+            return redirect()->route('produk.create')->withErrors(['msg' => 'Gagal menambahkan produk']);
         }
     }
 
     public function show($id)
     {
-        $response = Http::get("http://127.0.0.1:8000/api/produk/{$id}");
-        $produk = $response->json();
+        $response = Http::timeout(5)->get("http://127.0.0.1:8000/api/produk/{$id}");
+        $produk = json_decode($response->body(), true)['data'] ?? null;
 
-        if ($response->successful() && $produk['status']) {
+        if ($response->successful() && $produk) {
             return view('produk.show', compact('produk'));
         } else {
-            return redirect()->route('produk.index')->withErrors(['msg' => 'Produk tidak ditemukan.']);
+            return redirect()->route('produk.index')->withErrors(['msg' => 'Gagal menampilkan detail produk']);
         }
     }
 
     public function edit($id)
     {
-        $responseProduk = Http::get("http://127.0.0.1:8000/api/produk/{$id}");
-        $produk = $responseProduk->json();
+        $response = Http::timeout(5)->get("http://127.0.0.1:8000/api/produk/{$id}");
+        $produk = json_decode($response->body(), true)['data'] ?? null;
 
-        if ($responseProduk->successful() && $produk['status']) {
-            return view('produk.edit', compact('produk', 'kategori', 'supplier'));
+        $supplier = $this->getSupplier();
+        $kategori = $this->getKategori();
+
+        if ($response->successful() && $produk) {
+            return view('produk.edit', compact('produk', 'supplier', 'kategori'));
         } else {
-            return redirect()->route('produk.index')->withErrors(['msg' => 'Produk tidak ditemukan.']);
+            return redirect()->route('produk.index')->withErrors(['msg' => 'Gagal menampilkan form edit produk']);
         }
     }
 
     public function update(Request $request, $id)
     {
-        $response = Http::put("http://127.0.0.1:8000/api/produk/{$id}", $request->all());
-        $data = $response->json();
+        $validatedData = $request->validate([
+            'nama_kategori' => 'required',
+            'nama_supplier' => 'required',
+            'nama_produk' => 'required',
+            'merk' => 'required',
+            'harga_beli' => 'required|numeric',
+            'diskon' => 'required',  
+            'harga_jual' => 'required|numeric',          
+            'stok' => 'required|numeric',
+        ]);
+
+        $response = Http::timeout(5)->put("http://127.0.0.1:8000/api/produk/{$id}", $validatedData);
+        $data = json_decode($response->body(), true);
 
         if ($response->successful() && $data['status']) {
             return redirect()->route('produk.index')->with('success', 'Produk berhasil diperbarui.');
         } else {
-            return redirect()->route('produk.edit', $id)->withErrors(['msg' => 'Gagal memperbarui produk.']);
+            return redirect()->route('produk.edit', $id)->withErrors(['msg' => 'Gagal memperbarui produk']);
         }
     }
 
     public function destroy($id)
     {
-        $response = Http::delete("http://127.0.0.1:8000/api/produk/{$id}");
-        $data = $response->json();
+        $response = Http::timeout(5)->delete("http://127.0.0.1:8000/api/produk/{$id}");
+        $data = json_decode($response->body(), true);
 
         if ($response->successful() && $data['status']) {
             return redirect()->route('produk.index')->with('success', 'Produk berhasil dihapus.');
         } else {
-            return redirect()->route('produk.index')->withErrors(['msg' => 'Gagal menghapus produk.']);
+            return redirect()->route('produk.index')->withErrors(['msg' => 'Gagal menghapus produk']);
         }
+    }
+
+    private function getSupplier()
+    {
+        $response = Http::timeout(5)->get('http://127.0.0.1:8000/api/supplier');
+        $supplier = json_decode($response->body(), true)['data'] ?? [];
+        return $supplier;
+    }
+
+    private function getKategori()
+    {
+        $response = Http::timeout(5)->get('http://127.0.0.1:8000/api/kategori');
+        $kategori = json_decode($response->body(), true)['data'] ?? [];
+        return $kategori;
     }
 }

@@ -30,6 +30,7 @@
                     <th class="py-3 px-6 text-left">Nama</th>
                     <th class="py-3 px-6 text-left">Email</th>
                     <th class="py-3 px-6 text-left">Telepon</th>
+                    <th class="py-3 px-6 text-left">Alamat</th>
                     <th class="py-3 px-6 text-center">Aksi</th>
                 </tr>
             </thead>
@@ -40,13 +41,14 @@
                         <td class="py-3 px-6 text-left">{{ $member['name'] }}</td>
                         <td class="py-3 px-6 text-left">{{ $member['email'] }}</td>
                         <td class="py-3 px-6 text-left">{{ $member['phone'] }}</td>
+                        <td class="py-3 px-6 text-left">{{ $member['address'] }}</td>
                         <td class="py-3 px-6 text-center">
-                            <a href="{{ route('member.show', $member['id_member']) }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Detail</a>
-                            <a href="{{ route('member.edit', $member['id_member']) }}" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">Edit</a>
+                            <a href="{{ route('member.show', $member['id_member']) }}" class="bg-blue-500 text-white px-1 py-2 rounded hover:bg-blue-600">Detail</a>
+                            <a href="{{ route('member.edit', $member['id_member']) }}" class="bg-yellow-500 text-white px-1 py-2 rounded hover:bg-yellow-600">Edit</a>
                             <form action="{{ route('member.destroy', $member['id_member']) }}" method="POST" style="display:inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" onclick="return confirm('Apakah Anda yakin ingin menghapus ini?')">Hapus</button>
+                                <button type="submit" class="bg-red-500 text-white px-1 py-2 rounded hover:bg-red-600" onclick="return confirm('Apakah Anda yakin ingin menghapus ini?')">Hapus</button>
                             </form>
                         </td>
                     </tr>

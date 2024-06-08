@@ -69,13 +69,13 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-Route::resource('/kategori',KategoriController::class,); 
+Route::resource('kategori',KategoriController::class,); 
 
-Route::resource('/produk',ProdukController::class,); 
+Route::resource('produk',ProdukController::class,); 
 
-Route::resource('/supplier',SupplierController::class,);
+Route::resource('supplier',SupplierController::class,);
 
-Route::resource('/member',MemberController::class,);
+Route::resource('member',MemberController::class,);
 
 
 

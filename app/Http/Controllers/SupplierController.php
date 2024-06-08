@@ -54,7 +54,7 @@ class SupplierController extends Controller
 
             if ($response->successful() && $data['status']) {
                 $supplier = $data['data'];
-                return view('supplier.show', compact('supplier' , 'produk'));
+                return view('supplier.show', compact('supplier'));
             } else {
                 return redirect()->route('supplier.index')->withErrors(['msg' => 'Supplier tidak ditemukan.']);
             }
