@@ -10,7 +10,7 @@ class Produk extends Model
     protected $primaryKey = 'id_produk'; // Sesuaikan dengan nama primary key jika diperlukan
 
     protected $fillable = [
-        'nama_produk', 'merk', 'id', 'id_supplier', 'harga_beli', 'harga_jual', 'diskon', 'stok'
+        'nama_produk', 'merk', 'id', 'id_supplier', 'harga_beli', 'harga_jual', 'stok'
     ];
 
     public function kategori()

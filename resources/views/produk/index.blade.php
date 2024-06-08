@@ -39,7 +39,6 @@
                         <th class="py-3 px-6 text-left">Merk</th>
                         <th class="py-3 px-6 text-left">Harga Beli</th>
                         <th class="py-3 px-6 text-left">Harga Jual</th>
-                        <th class="py-3 px-6 text-left">Diskon</th>
                         <th class="py-3 px-6 text-left">Stok</th>
                         <th class="py-3 px-6 text-center">Aksi</th>
                     </tr>
@@ -54,7 +53,6 @@
                             <td class="py-3 px-6 text-left">{{ $item['merk'] }}</td>
                             <td class="py-3 px-6 text-left">{{ formatRupiah($item['harga_beli']) }}</td>
                             <td class="py-3 px-6 text-left">{{ formatRupiah($item['harga_jual']) }}</td>
-                            <td class="py-3 px-6 text-left">{{ $item['diskon'] }}</td>
                             <td class="py-3 px-6 text-left">{{ $item['stok'] }}</td>
                             <td class="py-3 px-6 text-center">
                                 <a href="{{ route('produk.show', $item['id_produk']) }}" class="bg-blue-500 text-white px-1 py-2 rounded hover:bg-blue-600">Detail</a>

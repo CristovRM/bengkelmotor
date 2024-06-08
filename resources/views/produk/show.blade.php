@@ -43,10 +43,6 @@
         <p class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight">{{ $produk['harga_jual'] }}</p>
     </div>
     <div class="mb-4">
-        <label class="block text-gray-700 font-bold mb-2">Diskon:</label>
-        <p class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight">{{ $produk['diskon'] }}</p>
-    </div>
-    <div class="mb-4">
         <label class="block text-gray-700 font-bold mb-2">Stok:</label>
         <p class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight">{{ $produk['stok'] }}</p>
     </div>

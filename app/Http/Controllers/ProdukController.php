@@ -29,7 +29,6 @@ class ProdukController extends Controller
             'nama_produk' => 'required',
             'merk' => 'required',
             'harga_beli' => 'required|numeric',
-            'diskon' => 'required',  
             'harga_jual' => 'required|numeric',          
             'stok' => 'required|numeric',
         ]);
@@ -79,7 +78,6 @@ class ProdukController extends Controller
             'nama_produk' => 'required',
             'merk' => 'required',
             'harga_beli' => 'required|numeric',
-            'diskon' => 'required',  
             'harga_jual' => 'required|numeric',          
             'stok' => 'required|numeric',
         ]);

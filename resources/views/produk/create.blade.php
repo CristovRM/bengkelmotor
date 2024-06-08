@@ -53,10 +53,6 @@
             <input type="number" id="harga_jual" name="harga_jual" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
         <div class="mb-4">
-            <label for="diskon" class="block text-gray-700 font-bold mb-2">Diskon:</label>
-            <input type="number" id="diskon" name="diskon" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-        </div>
-        <div class="mb-4">
             <label for="stok" class="block text-gray-700 font-bold mb-2">Stok:</label>
             <input type="number" id="stok" name="stok" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
