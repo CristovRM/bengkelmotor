@@ -2,18 +2,25 @@
 
 @include('kasir.dashboard')
 
-@section('title', 'Kasir')
+@section('title', 'Daftar Transaksi Kasir')
 
 @section('content')
 <div class="container mx-auto px-4 py-8" style="width: 800px;">
-    <h1 class="text-2xl font-bold mb-4">Transaksi Kasir</h1>
-    <a href="{{ route('transaksi.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Tambah Transaksi</a>
+    <h1 class="text-2xl font-bold mb-4">Daftar Transaksi</h1>
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            {{ $errors->first('msg') }}
+        </div>
+    @endif
 
     @if (session('success'))
-        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-4">
+        <div class="alert alert-success">
             {{ session('success') }}
         </div>
     @endif
+    
+    <a href="{{ route('transaksi.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Tambah Transaksi</a>
 
     <div class="overflow-x-auto mt-6">
         <table class="min-w-full bg-white border border-gray-300">
@@ -30,13 +37,13 @@
             <tbody class="text-gray-700 text-sm">
                 @foreach ($transaksi as $trx)
                     <tr class="hover:bg-gray-100">
-                        <td class="py-3 px-4 border-b border-gray-300">{{ $trx->id }}</td>
-                        <td class="py-3 px-4 border-b border-gray-300">{{ $trx->nama_pembeli }}</td>
-                        <td class="py-3 px-4 border-b border-gray-300">{{ $trx->produk->nama_produk }}</td>
-                        <td class="py-3 px-4 border-b border-gray-300">{{ number_format($trx->jumlah, 0, ',', '.') }}</td>
-                        <td class="py-3 px-4 border-b border-gray-300">Rp {{ number_format($trx->total_harga, 0, ',', '.') }}</td>
+                        <td class="py-3 px-4 border-b border-gray-300">{{ $trx['id'] }}</td>
+                        <td class="py-3 px-4 border-b border-gray-300">{{ $trx['nama_pembeli'] }}</td>
+                        <td class="py-3 px-4 border-b border-gray-300">{{ $trx['nama_produk'] }}</td>
+                        <td class="py-3 px-4 border-b border-gray-300">{{ number_format($trx['jumlah'], 0, ',', '.') }}</td>
+                        <td class="py-3 px-4 border-b border-gray-300">Rp {{ number_format($trx['total_harga'], 0, ',', '.') }}</td>
                         <td class="py-3 px-4 border-b border-gray-300">
-                            <a href="{{ route('transaksi.show', $trx->id) }}" class="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600">Detail</a>
+                            <a href="{{ route('transaksi.show', $trx['id']) }}" class="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600">Detail</a>
                         </td>
                     </tr>
                 @endforeach

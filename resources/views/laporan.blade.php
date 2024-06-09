@@ -14,6 +14,7 @@
             <thead>
                 <tr>
                     <th class="px-4 py-2">Nama Kasir</th>
+                    <th class="px-4 py-2">Nama Pembeli</th>
                     <th class="px-4 py-2">ID Transaksi</th>
                     <th class="px-4 py-2">Nama Produk</th>
                     <th class="px-4 py-2">Jumlah</th>
@@ -25,6 +26,7 @@
                 @foreach($transaksi as $item)
                 <tr>
                     <td class="border px-4 py-2">{{ optional($item->kasir)->role }}</td>
+                    <td class="border px-4 py-2">{{ $item->nama_pembeli }}</td>
                     <td class="border px-4 py-2">{{ $item->id }}</td>
                     <td class="border px-4 py-2">{{ $item->produk->nama_produk }}</td>
                     <td class="border px-4 py-2">{{ $item->jumlah }}</td>
