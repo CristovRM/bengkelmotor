@@ -77,16 +77,13 @@ Route::resource('supplier',SupplierController::class,);
 
 Route::resource('member',MemberController::class,);
 
+Route::resource('transaksi',TransaksiController::class,);
+
 
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/Home', [HomeController::class, 'index'])->name('Home');
 
-Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
-Route::get('/transaksi/create', [TransaksiController::class, 'create'])->name('transaksi.create');
-Route::post('/transaksi', [TransaksiController::class, 'store'])->name('transaksi.store');
-Route::get('transaksi/{id}', [TransaksiController::class, 'show'])->name('transaksi.show');
-Route::delete('/transaksi/{id}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy');
 
 Route::middleware(['auth', 'checkRole:admin,kasir'])->group(function () {
     Route::get('/laporan', [TransaksiController::class, 'laporan'])->name('laporan');

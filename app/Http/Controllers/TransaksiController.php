@@ -3,145 +3,78 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Transaksi;
-use App\Models\Produk;
-use Dompdf\Dompdf;
-use Dompdf\Options;
-
+use Illuminate\Support\Facades\Http;
 
 class TransaksiController extends Controller
-{    
-
-    public function laporanPDF()
 {
-    $transaksi = Transaksi::with('kasir')->get();
-
-    $pdf = new Dompdf();
-    $pdf->loadHtml(view('laporan', compact('transaksi')));
-
-
-    // (Opsional) Set paper size dan orientation
-    $pdf->setPaper('A4', 'landscape');
-
-    // Render PDF ke output
-    $pdf->render();
-
-    // Tampilkan atau unduh PDF
-    return $pdf->stream('laporan_transaksi.pdf');
-}
-    public function laporan()
-    {
-        // Ambil data transaksi dari database
-        $transaksi = Transaksi::all(); // Atau sesuaikan dengan logika Anda
-
-        // Tampilkan halaman laporan transaksi
-        return view('laporan', compact('transaksi'));
-    }
-    
     public function index()
     {
-        $transaksi = Transaksi::with('produk')->get();
-        return view('transaksi.index', compact('transaksi'));
+        try {
+            $response = Http::get('http://127.0.0.1:8000/api/transaksi');
+            $data = $response->json();
+
+            if ($response->successful() && $data['status']) {
+                $transaksi = $data['data'];
+                return view('transaksi.index', compact('transaksi'));
+            } else {
+                return view('transaski.index')->withErrors(['msg' => 'Gagal mengambil data transaksi.']);
+            }
+        } catch (\Exception $e) {
+            return view('transaksi.index')->withErrors(['msg' => 'Terjadi kesalahan: ' . $e->getMessage()]);
+        }
     }
 
     public function create()
     {
-        $produk = Produk::all();
+        $produk = $this->getProduk();
         return view('transaksi.create', compact('produk'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'id_produk' => 'required|exists:produk,id_produk',
-            'jumlah' => 'required|integer|min:1',
+        $validatedData = $request->validate([
+            'nama_pembeli' => 'required',
+            'nama_produk' => 'required',
+            'jumlah' => 'required',          
             'total_harga' => 'required|numeric',
-            'nama_pembeli' => 'required|string',
         ]);
 
-        $userid = auth()->id();
-    
-       $userRole = auth()->user()->role;
+        $response = Http::post('http://127.0.0.1:8000/api/transaksi', $validatedData);
+        $data = json_decode($response->body(), true);
 
-        $produk = Produk::findOrFail($request->id_produk);
-
-        if ($produk->stok < $request->jumlah) {
-            return redirect()->back()->with('error', 'Stok produk tidak mencukupi.');
+        if ($response->successful() && $data['status']) {
+            return redirect()->route('transaksi.index')->with('success', 'Transaksi berhasil ditambahkan.');
+        } else {
+            return redirect()->route('transaksi.create')->withErrors(['msg' => 'Gagal menambahkan transaski']);
         }
-
-        // Debugging statements
-        \Log::info('Stok sebelum pengurangan: ' . $produk->stok);
-        \Log::info('Jumlah yang diinputkan: ' . $request->jumlah);
-
-        // Pengurangan stok sesuai dengan jumlah yang diinputkan
-        $produk->stok -= $request->jumlah;
-        $produk->save();
-
-        // Debugging statements
-        \Log::info('Stok setelah pengurangan: ' . $produk->stok);
-
-        Transaksi::create([
-            'id_produk' => $request->id_produk,
-            'jumlah' => $request->jumlah,
-            'total_harga' => $request->total_harga,
-            'nama_pembeli' => $request->nama_pembeli,
-        ]);
-
-        return redirect()->route('transaksi.index')->with('success', 'Transaksi berhasil disimpan.');
     }
 
+    
     public function show($id)
-{
-    $transaksi = Transaksi::with('produk')->findOrFail($id);
-    return view('transaksi.show', compact('transaksi'));
-}
-
-
-    public function update(Request $request, $id)
     {
-        $request->validate([
-            'id_produk' => 'required|exists:produk,id_produk',
-            'jumlah' => 'required|integer|min:1',
-            'total_harga' => 'required|numeric',
-        ]);
+        try {
+            $response = Http::get("http://127.0.0.1:8000/api/transaksi/{$id}");
+            $data = $response->json();
 
-        $transaksi = Transaksi::findOrFail($id);
-        $produkLama = Produk::findOrFail($transaksi->id_produk);
-        $produkBaru = Produk::findOrFail($request->id_produk);
-
-        // Debugging statements
-        \Log::info('Stok produk lama sebelum pengembalian: ' . $produkLama->stok);
-        \Log::info('Jumlah yang diinputkan: ' . $request->jumlah);
-        \Log::info('Jumlah transaksi sebelumnya: ' . $transaksi->jumlah);
-
-        // Kembalikan stok produk lama
-        $produkLama->stok += $transaksi->jumlah;
-        $produkLama->save();
-
-        // Debugging statements
-        \Log::info('Stok produk lama setelah pengembalian: ' . $produkLama->stok);
-
-        if ($produkBaru->stok < $request->jumlah) {
-            return redirect()->back()->with('error', 'Stok produk tidak mencukupi.');
+            if ($response->successful() && $data['status']) {
+                $transaksi = $data['data'];
+                return view('transaksi.show', compact('transaksi'));
+            } else {
+                return redirect()->route('transaksi.index')->withErrors(['msg' => 'Transaksi tidak ditemukan.']);
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('transaksi.index')->withErrors(['msg' => 'Terjadi kesalahan: ' . $e->getMessage()]);
         }
-
-        // Debugging statements
-        \Log::info('Stok produk baru sebelum pengurangan: ' . $produkBaru->stok);
-
-        // Kurangi stok produk baru
-        $produkBaru->stok -= $request->jumlah;
-        $produkBaru->save();
-
-        // Debugging statements
-        \Log::info('Stok produk baru setelah pengurangan: ' . $produkBaru->stok);
-
-        $transaksi->id_produk = $request->id_produk;
-        $transaksi->jumlah = $request->jumlah;
-        $transaksi->total_harga = $request->total_harga;
-        $transaksi->save();
-
-        return redirect()->route('transaksi.index')->with('success', 'Transaksi berhasil diperbarui');
     }
+
+    private function getProduk()
+    {
+        $response = Http::get('http://127.0.0.1:8000/api/produk');
+        $produk = json_decode($response->body(), true)['data'] ?? [];
+        return $produk;
+    }
+
 
     
 }
+

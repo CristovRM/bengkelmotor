@@ -1,9 +1,5 @@
 <?php
 
-use App\Http\Controllers\Api\KategoriController;
-use App\Http\Controllers\Api\ProdukController;
-use App\Http\Controllers\Api\SupplierController;
-use App\Http\Controllers\Api\MemberController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,12 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-Route::ApiResource('kategori',KategoriController::class,);
-
-Route::ApiResource('produk',ProdukController::class,);
-
-Route::ApiResource('supplier',SupplierController::class,);
-
-Route::ApiResource('member',MemberController::class,);
 
