@@ -61,11 +61,11 @@
          </li>
          <li>
          <li>
-            <a href="{{ route('member.index')}}"class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <a href="{{ route('karyawan.index')}}"class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2a5 5 0 100 10 5 5 0 000-10zm0 11a7 7 0 00-7 7v1a1 1 0 001 1h12a1 1 0 001-1v-1a7 7 0 00-7-7z"/>
                </svg>
-               <span class="flex-1 ms-3 whitespace-nowrap">Member</span>
+               <span class="flex-1 ms-3 whitespace-nowrap">Karyawan</span>
             </a>
          </li>
             <a href="{{ route('kategori.index')}}"class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">

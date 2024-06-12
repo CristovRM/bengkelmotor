@@ -11,7 +11,7 @@ use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\KasirController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\MemberController;
+use App\Http\Controllers\KaryawanController;
 
 
 Route::resource('users', UserController::class);
@@ -75,7 +75,7 @@ Route::resource('produk',ProdukController::class,);
 
 Route::resource('supplier',SupplierController::class,);
 
-Route::resource('member',MemberController::class,);
+Route::resource('karyawan',KaryawanController::class,);
 
 Route::resource('transaksi',TransaksiController::class,);
 

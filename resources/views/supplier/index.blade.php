@@ -36,12 +36,12 @@
                         <td class="border px-4 py-2">{{ $supplier['nama_supplier'] }}</td>
                         <td class="border px-4 py-2">{{ $supplier['alamat'] }}</td>
                         <td class="border px-4 py-2">
-                            <a href="{{ route('supplier.show', $supplier['id_supplier']) }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Detail</a>
-                            <a href="{{ route('supplier.edit', $supplier['id_supplier']) }}" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">Edit</a>
+                            <a href="{{ route('supplier.show', $supplier['id_supplier']) }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"><i class="fas fa-info-circle"></i></a>
+                            <a href="{{ route('supplier.edit', $supplier['id_supplier']) }}" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600"><i class="fas fa-edit"></i></a>
                             <form action="{{ route('supplier.destroy', $supplier['id_supplier']) }}" method="POST" style="display: inline-block;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" onclick="return confirm('Apakah Anda yakin ingin menghapus supplier ini?')">Hapus</button>
+                                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" onclick="return confirm('Apakah Anda yakin ingin menghapus supplier ini?')"><i class="fas fa-trash"></i></button>
                             </form>
                         </td>
                     </tr>

@@ -2,11 +2,11 @@
 
 @include('dashboard')
 
-@section('title', 'Tambah Member')
+@section('title', 'Tambah Data Karyawan')
 
 @section('content')
 <div class="container mx-auto px-4 py-8" style="width: 800px;">
-    <h1 class="text-2xl font-bold mb-4">Tambah Member Baru</h1>
+    <h1 class="text-2xl font-bold mb-4">Tambah Karyawan Baru</h1>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -16,7 +16,7 @@
         </div>
     @endif
 
-    <form action="{{ route('member.store') }}" method="POST">
+    <form action="{{ route('karyawan.store') }}" method="POST">
         @csrf
         <div class="mb-3">
             <label for="name" class="form-label">Nama</label>

@@ -20,6 +20,7 @@
         <p><strong>Nama Produk:</strong> {{ $transaksi['nama_produk'] }}</p>
         <p><strong>Jumlah:</strong> {{ number_format($transaksi['jumlah'], 0, ',', '.') }}</p>
         <p><strong>Total Harga:</strong> Rp {{ number_format($transaksi['total_harga'], 0, ',', '.') }}</p>
+        <p><strong>Metode Pembayaran:</strong> {{ $transaksi['payment_method'] }}</p>
         <a href="{{ route('transaksi.index') }}" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 mt-4 inline-block">
             Kembali ke Daftar Transaksi
         </a>

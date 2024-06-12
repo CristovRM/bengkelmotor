@@ -27,11 +27,11 @@
                         <td class="py-3 px-6 text-left">{{ $user->email }}</td>
                         <td class="py-3 px-6 text-left">{{ $user->role }}</td>
                         <td class="py-3 px-6 text-center">
-                            <a href="{{ route('users.edit', $user->id) }}" class="bg-yellow-400 text-black py-1 px-3 rounded hover:bg-yellow-500 transition duration-300 inline-block">Edit</a>
+                            <a href="{{ route('users.edit', $user->id) }}" class="bg-yellow-400 text-black py-1 px-3 rounded hover:bg-yellow-500 transition duration-300 inline-block"><i class="fas fa-edit"></i></a>
                             <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline-block">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-700 transition duration-300" onclick="return confirm('Apakah Anda yakin ingin menghapus user ini?')">Hapus</button>
+                                <button type="submit" class="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-700 transition duration-300" onclick="return confirm('Apakah Anda yakin ingin menghapus user ini?')"><i class="fas fa-trash"></i></button>
                             </form>
                         </td>
                     </tr>

@@ -8,7 +8,20 @@
 <div class="container mx-auto px-4 py-8" style="width: 800px;">
     <h1 class="text-2xl font-bold mb-4">Laporan Transaksi</h1>
     <p>Transaksi oleh {{ auth()->user()->name }} ({{ auth()->user()->role }})</p>
-    @if($transaksi->count() > 0)
+    
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            {{ $errors->first('msg') }}
+        </div>
+    @endif
+
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+    
+    @if(count($transaksi) > 0)
     <div class="overflow-x-auto">
         <table class="w-full table-auto">
             <thead>
@@ -25,13 +38,13 @@
             <tbody>
                 @foreach($transaksi as $item)
                 <tr>
-                    <td class="border px-4 py-2">{{ optional($item->kasir)->role }}</td>
-                    <td class="border px-4 py-2">{{ $item->nama_pembeli }}</td>
-                    <td class="border px-4 py-2">{{ $item->id }}</td>
-                    <td class="border px-4 py-2">{{ $item->produk->nama_produk }}</td>
-                    <td class="border px-4 py-2">{{ $item->jumlah }}</td>
-                    <td class="border px-4 py-2">{{ formatRupiah($item->total_harga)}}</td>
-                    <td class="border px-4 py-2">{{ $item->created_at }}</td>
+                    <td class="border px-4 py-2">{{ $item['role'] }}</td>
+                    <td class="border px-4 py-2">{{ $item['nama_pembeli'] }}</td>
+                    <td class="border px-4 py-2">{{ $item['id'] }}</td>
+                    <td class="border px-4 py-2">{{ $item['nama_produk'] }}</td>
+                    <td class="border px-4 py-2">{{ $item['jumlah'] }}</td>
+                    <td class="border px-4 py-2">{{ number_format($item['total_harga'], 2) }}</td>
+                    <td class="border px-4 py-2">{{ $item['created_at'] }}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -47,7 +60,7 @@
 
 <script>
     document.getElementById('export-pdf').addEventListener('click', function() {
-        fetch("{{ route('laporan.pdf') }}") 
+        fetch("{{ route('laporan.pdf') }}")
             .then(response => response.blob())
             .then(blob => {
                 const url = window.URL.createObjectURL(new Blob([blob]));
@@ -60,6 +73,5 @@
             });
     });
 </script>
-
 
 @endsection
