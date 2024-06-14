@@ -8,54 +8,54 @@
 <div class="container mx-auto px-4 py-8" style="width: 800px;">
     <h1 class="text-2xl font-bold mb-4">Laporan Transaksi</h1>
     <p>Transaksi oleh {{ auth()->user()->name }} ({{ auth()->user()->role }})</p>
-    
+
     @if ($errors->any())
         <div class="alert alert-danger">
             {{ $errors->first('msg') }}
         </div>
     @endif
 
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-    
-    @if(count($transaksi) > 0)
-    <div class="overflow-x-auto">
-        <table class="w-full table-auto">
-            <thead>
-                <tr>
-                    <th class="px-4 py-2">Nama Kasir</th>
-                    <th class="px-4 py-2">Nama Pembeli</th>
-                    <th class="px-4 py-2">ID Transaksi</th>
-                    <th class="px-4 py-2">Nama Produk</th>
-                    <th class="px-4 py-2">Jumlah</th>
-                    <th class="px-4 py-2">Total Harga</th>
-                    <th class="px-4 py-2">Tanggal Transaksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($transaksi as $item)
-                <tr>
-                    <td class="border px-4 py-2">{{ $item['role'] }}</td>
-                    <td class="border px-4 py-2">{{ $item['nama_pembeli'] }}</td>
-                    <td class="border px-4 py-2">{{ $item['id'] }}</td>
-                    <td class="border px-4 py-2">{{ $item['nama_produk'] }}</td>
-                    <td class="border px-4 py-2">{{ $item['jumlah'] }}</td>
-                    <td class="border px-4 py-2">{{ number_format($item['total_harga'], 2) }}</td>
-                    <td class="border px-4 py-2">{{ $item['created_at'] }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+    @foreach ($laporan as $bulan => $dataBulan)
+        <h2 class="text-xl font-semibold mt-6 mb-2">{{ $bulan }}</h2>
+        @if (count($dataBulan['transaksi']) > 0)
+            <div class="overflow-x-auto">
+                <table class="w-full table-auto">
+                    <thead>
+                        <tr>
+                            <th class="px-4 py-2">ID Transaksi</th>
+                            <th class="px-4 py-2">Nama Pembeli</th>
+                            <th class="px-4 py-2">Nama Produk</th>
+                            <th class="px-4 py-2">Jumlah</th>
+                            <th class="px-4 py-2">Total Harga</th>
+                            <th class="px-4 py-2">Tanggal Transaksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($dataBulan['transaksi'] as $transaksiItem)
+                            <tr>
+                                <td class="border px-4 py-2">{{ $transaksiItem['id'] }}</td>
+                                <td class="border px-4 py-2">{{ $transaksiItem['nama_pembeli'] }}</td>
+                                <td class="border px-4 py-2">{{ $transaksiItem['nama_produk'] }}</td>
+                                <td class="border px-4 py-2">{{ $transaksiItem['jumlah'] }}</td>
+                                <td class="border px-4 py-2">{{ number_format($transaksiItem['total_harga'], 2) }}</td>
+                                <td class="border px-4 py-2">{{ $transaksiItem['created_at'] }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-4">
+                <p class="font-semibold">Total Transaksi: {{ $dataBulan['total_transaksi'] }}</p>
+                <p class="font-semibold">Total Amount: Rp {{ number_format($dataBulan['total_amount'], 2) }}</p>
+            </div>
+        @else
+            <p class="mt-4">Tidak ada transaksi pada bulan ini.</p>
+        @endif
+    @endforeach
+
     <div class="mt-4">
         <button id="export-pdf" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Simpan Ke PDF</button>
     </div>
-    @else
-    <p>Tidak ada transaksi yang ditemukan.</p>
-    @endif
 </div>
 
 <script>

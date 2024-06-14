@@ -41,11 +41,12 @@
                         <td class="py-3 px-4 border-b border-gray-300">{{ $trx['id'] }}</td>
                         <td class="py-3 px-4 border-b border-gray-300">{{ $trx['nama_pembeli'] }}</td>
                         <td class="py-3 px-4 border-b border-gray-300">{{ $trx['nama_produk'] }}</td>
-                        <td class="py-3 px-4 border-b border-gray-300">{{ number_format($trx['jumlah'], 0, ',', '.') }}</td>
+                        <td class="py-3 px-4 border-b border-gray-300">{{ number_format($trx['jumlah']) }}</td>
                         <td class="py-3 px-4 border-b border-gray-300">Rp {{ number_format($trx['total_harga'], 0, ',', '.') }}</td>
                         <td class="py-3 px-4 border-b border-gray-300">{{ $trx['payment_method'] }}</td>
                         <td class="py-3 px-4 border-b border-gray-300">
-                            <a href="{{ route('transaksi.show', $trx['id']) }}" class="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600"><i class="fas fa-info-circle"></i></a>
+                            <a href="{{ route('transaksi.show', $trx['id']) }}" class="bg-blue-500 text-white px-1 py-1 rounded-md hover:bg-blue-600"><i class="fas fa-info-circle"></i></a>
+                            <a href="{{ route('transaksi.cetak', $trx['id']) }}" class="bg-green-500 text-white px-1 py-1 rounded-md hover:bg-green-600"><i class="fas fa-print"></i></a>
                         </td>
                     </tr>
                 @endforeach
@@ -54,3 +55,4 @@
     </div>
 </div>
 @endsection
+

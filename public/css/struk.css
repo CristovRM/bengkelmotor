@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.transaction-info {
+    margin-bottom: 20px;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 10px;
+}
+
+.produk-info {
+    margin-bottom: 10px;
+}
+
+@media print {
+    .container {
+        max-width: 100%;
+        margin: 0;
+        border: none;
+        padding: 10px;
+    }
+    .header, .footer {
+        display: none;
+    }
+    .transaction-info {
+        margin-bottom: 10px;
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+    .produk-info {
+        margin-bottom: 5px;
+    }
+}

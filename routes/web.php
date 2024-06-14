@@ -79,6 +79,9 @@ Route::resource('karyawan',KaryawanController::class,);
 
 Route::resource('transaksi',TransaksiController::class,);
 
+Route::get('transaksi/{id}/cetak', [TransaksiController::class, 'cetak'])->name('transaksi.cetak');
+
+
 
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');

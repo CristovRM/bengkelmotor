@@ -14,15 +14,18 @@
         </div>
     @endif
 
-    <div class="bg-white p-6 rounded-md shadow-md">
-        <p><strong>ID:</strong> {{ $transaksi['id'] }}</p>
+    <div class="bg-white shadow-md rounded p-6">
+        <h2 class="text-xl font-semibold mb-4">Informasi Pembeli</h2>
         <p><strong>Nama Pembeli:</strong> {{ $transaksi['nama_pembeli'] }}</p>
         <p><strong>Nama Produk:</strong> {{ $transaksi['nama_produk'] }}</p>
-        <p><strong>Jumlah:</strong> {{ number_format($transaksi['jumlah'], 0, ',', '.') }}</p>
-        <p><strong>Total Harga:</strong> Rp {{ number_format($transaksi['total_harga'], 0, ',', '.') }}</p>
+        <p><strong>Jumlah:</strong> {{ $transaksi['jumlah'] }}</p>
         <p><strong>Metode Pembayaran:</strong> {{ $transaksi['payment_method'] }}</p>
-        <a href="{{ route('transaksi.index') }}" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 mt-4 inline-block">
-            Kembali ke Daftar Transaksi
+        <h2 class="text-xl font-semibold my-4">Total Harga</h2>
+        <p class="text-lg"><strong>Rp {{ number_format($transaksi['total_harga'], 0, ',', '.') }}</strong></p>
+
+        <a href="{{ route('transaksi.index') }}" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+            Kembali ke transaksi
+
         </a>
     </div>
 </div>
