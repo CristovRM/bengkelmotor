@@ -33,10 +33,9 @@
                 <thead>
                     <tr class="bg-gray-200 text-gray-700 uppercase text-sm leading-normal">
                         <th class="py-3 px-6 text-left">Kode</th>
-                        <th class="py-3 px-6 text-left">Nama</th>
+                        <th class="py-3 px-6 text-left">Nama Produk</th>
                         <th class="py-3 px-6 text-left">Nama Kategori</th>
                         <th class="py-3 px-6 text-left">Nama Supplier</th>
-                        <th class="py-3 px-6 text-left">Merk</th>
                         <th class="py-3 px-6 text-left">Harga Beli</th>
                         <th class="py-3 px-6 text-left">Harga Jual</th>
                         <th class="py-3 px-6 text-left">Stok</th>
@@ -50,7 +49,6 @@
                             <td class="py-3 px-6 text-left">{{ $item['nama_produk'] }}</td>
                             <td class="py-3 px-6 text-left">{{ $item['nama_kategori'] }}</td>
                             <td class="py-3 px-6 text-left">{{ $item['nama_supplier'] }}</td>
-                            <td class="py-3 px-6 text-left">{{ $item['merk'] }}</td>
                             <td class="py-3 px-6 text-left">{{ formatRupiah($item['harga_beli']) }}</td>
                             <td class="py-3 px-6 text-left">{{ formatRupiah($item['harga_jual']) }}</td>
                             <td class="py-3 px-6 text-left">{{ $item['stok'] }}</td>

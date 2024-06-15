@@ -19,9 +19,9 @@
         <h2 class="text-xl font-semibold mt-6 mb-2">{{ $bulan }}</h2>
         @if (count($dataBulan['transaksi']) > 0)
             <div class="overflow-x-auto">
-                <table class="w-full table-auto">
+                <table class="min-w-full bg-white border border-gray-300">
                     <thead>
-                        <tr>
+                        <tr class="w-full bg-gray-200 text-left text-gray-700 uppercase text-sm leading-normal">
                             <th class="px-4 py-2">ID Transaksi</th>
                             <th class="px-4 py-2">Nama Pembeli</th>
                             <th class="px-4 py-2">Nama Produk</th>
@@ -44,9 +44,9 @@
                     </tbody>
                 </table>
             </div>
-            <div class="mt-4">
-                <p class="font-semibold">Total Transaksi: {{ $dataBulan['total_transaksi'] }}</p>
-                <p class="font-semibold">Total Amount: Rp {{ number_format($dataBulan['total_amount'], 2) }}</p>
+            <div class="w-full bg-gray-200 text-left text-gray-700 uppercase text-sm leading-normal">
+                <p class="font-semibold border px-4 py-2">Total Transaksi: {{ $dataBulan['total_transaksi'] }}</p>
+                <p class="font-semibold border px-4 py-2">Total Jumlah: {{ number_format($dataBulan['total_amount'], 2) }}</p>
             </div>
         @else
             <p class="mt-4">Tidak ada transaksi pada bulan ini.</p>

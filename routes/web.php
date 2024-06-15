@@ -57,6 +57,7 @@ Route::get('/listbarang', [ListBarangController::class, 'tampilkan'])->name('lis
 
 Route::middleware(['auth'])->group(function (){
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboar', [DashboardController::class, 'index'])->name('dashboar');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
     
 });
@@ -88,11 +89,11 @@ Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/Home', [HomeController::class, 'index'])->name('Home');
 
 
-Route::middleware(['auth', 'checkRole:admin,kasir'])->group(function () {
+
     Route::get('/laporan', [TransaksiController::class, 'laporan'])->name('laporan');
     Route::get('/laporan.pdf', [TransaksiController::class, 'laporanPDF'])->name('laporan.pdf');
 
-});
+
 
 
 

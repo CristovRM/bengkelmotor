@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Transaksi;
+use App\Models\User;
+use App\Models\Karyawan;
+use App\Models\Kategori;
+use App\Models\Produk;
+use App\Models\Supplier;
 
 class DashboardController extends Controller
 {
@@ -13,7 +18,16 @@ class DashboardController extends Controller
             return redirect()->route('kasir.dashboard');
         }
         
+        $totalUsers = User::count();
+        $totalKaryawan = Karyawan::count();
+        $totalKategori = Kategori::count();
+        $totalProduk = Produk::count();
+        $totalSupplier = Supplier::count();
+        $laporanTransaksi = Transaksi::count();
 
+        return view('dashboar', compact('totalUsers', 'totalKaryawan', 'totalKategori', 'totalProduk', 'totalSupplier','laporanTransaksi'));
         return view('dashboard');
     }   
-}
+
+}   
+

@@ -31,10 +31,6 @@
         <p class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight">{{ $produk['nama_supplier'] }}</p>
     </div>
     <div class="mb-4">
-        <label class="block text-gray-700 font-bold mb-2">Merk:</label>
-        <p class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight">{{ $produk['merk'] }}</p>
-    </div>
-    <div class="mb-4">
         <label class="block text-gray-700 font-bold mb-2">Harga Beli:</label>
         <p class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight">{{ $produk['harga_beli'] }}</p>
     </div>

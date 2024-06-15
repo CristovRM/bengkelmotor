@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Dompdf\Dompdf;
 use Dompdf\Options;
+
 
 class TransaksiController extends Controller
 {
@@ -170,7 +172,7 @@ public function show($id)
                     $laporan[$bulan]['total_amount'] += $item['total_harga'];
                     $laporan[$bulan]['transaksi'][] = $item;
                 }
-    
+
                 return view('laporan', compact('laporan'));
             } else {
                 return redirect()->route('laporan')->withErrors(['msg' => 'Gagal mengambil data laporan transaksi.']);
@@ -189,27 +191,28 @@ public function show($id)
         if ($response->successful() && $data['status']) {
             $transaksi = $data['data'];
 
-            // Render HTML menggunakan blade template 'laporan.pdf'
-            $html = view('laporan.pdf', compact('transaksi'))->render();
+            // Mengelompokkan transaksi per bulan
+            $laporan = [];
+            foreach ($transaksi as $item) {
+                $bulan = date('F Y', strtotime($item['created_at']));
+                if (!isset($laporan[$bulan])) {
+                    $laporan[$bulan] = [
+                        'total_transaksi' => 0,
+                        'total_amount' => 0,
+                        'transaksi' => []
+                    ];
+                }
 
-            // Setup Dompdf
-            $options = new Options();
-            $options->set('isHtml5ParserEnabled', true);
-            $options->set('isPhpEnabled', true);
+                $laporan[$bulan]['total_transaksi']++;
+                $laporan[$bulan]['total_amount'] += $item['total_harga'];
+                $laporan[$bulan]['transaksi'][] = $item;
+            }
 
-            $dompdf = new Dompdf($options);
+            // Load the view and pass the report data
+            $pdf = Dompdf::loadView('laporan_pdf', compact('laporan'));
 
-            // Load HTML ke Dompdf
-            $dompdf->loadHtml($html);
-
-            // Render PDF (menghasilkan file PDF)
-            $dompdf->render();
-
-            // Simpan PDF ke direktori lokal
-            $outputFilename = storage_path('app/public/laporan_transaksi.pdf');
-            $dompdf->stream($outputFilename);
-
-            return $outputFilename;
+            // Stream the generated PDF
+            return $pdf->stream('laporan_transaksi.pdf');
         } else {
             return redirect()->route('laporan')->withErrors(['msg' => 'Gagal mengambil data laporan transaksi.']);
         }
@@ -217,9 +220,6 @@ public function show($id)
         return redirect()->route('laporan')->withErrors(['msg' => 'Terjadi kesalahan: ' . $e->getMessage()]);
     }
 }
-
-
-
 
 public function cetak($id)
 {

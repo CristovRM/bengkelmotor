@@ -41,10 +41,6 @@
             </select>
         </div>
         <div class="mb-4">
-            <label for="merk" class="block text-gray-700 font-bold mb-2">Merk:</label>
-            <input type="text" id="merk" name="merk" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
-        </div>
-        <div class="mb-4">
             <label for="harga_beli" class="block text-gray-700 font-bold mb-2">Harga Beli:</label>
             <input type="number" id="harga_beli" name="harga_beli" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
