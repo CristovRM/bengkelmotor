@@ -30,6 +30,7 @@
                   <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Dashboard</a>
                 </li>
                 <li>
+                  <span class="mr-4">Hello, {{ Auth::user()->name }}!</span>
                   <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</a>
                 </li>
               </ul>
@@ -93,6 +94,15 @@
             </a>
          </li>
          <li>
+         <li>
+            <a href="{{ route('pembelian.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M5.05 9.293a1 1 0 01.976-.083l1.928.714a1 1 0 00.584 0l3.71-1.417a1 1 0 01.635 0l1.977.735a1 1 0 011.251-1.546L19 8.11V4a2 2 0 00-2-2H3a2 2 0 00-2 2v4.107l.88-.327a1 1 0 011.056.204l.864.86z"/>
+                  <path fill-rule="evenodd" d="M2 12.752l2-.752 2 .752v2.698l-2 .752-2-.752v-2.698zm8 0l2-.752 2 .752v2.698l-2 .752-2-.752v-2.698zM4.5 18H15a2 2 0 001.995-1.85L17 16v-1.682l-1.1-.413-2.9 1.106a3 3 0 01-1.708 0l-3.92-1.466a3 3 0 01-1.708 0L2 14.318V16c0 .728.387 1.364.995 1.72L4.5 18z" clip-rule="evenodd" />
+               </svg>
+               <span class="flex-1 ms-3 whitespace-nowrap">Data Pembelian</span>
+            </a>
+         </li>
             <a href="{{ route('laporan') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v1H2a2 2 0 00-2 2v2a2 2 0 002 2h2v1a2 2 0 002 2v1a2 2 0 002 2h4a2 2 0 002-2v-1a2 2 0 002-2v-1h2a2 2 0 002-2V7a2 2 0 00-2-2h-2V4a2 2 0 00-2-2H6z" clip-rule="evenodd"/>

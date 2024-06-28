@@ -17,6 +17,7 @@
                         <input type="text" name="nama_kategori" id="nama_kategori" class="border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 rounded-lg py-2 px-4 block w-full" value="{{ $kategori['nama_kategori'] }}">
                     </div>
                     <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Simpan Perubahan</button>
+                    <a href="{{ route('kategori.index') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Batal</a>
                 </form>
             </div>
         </div>

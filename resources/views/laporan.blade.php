@@ -7,7 +7,6 @@
 @section('content')
 <div class="container mx-auto px-4 py-8" style="width: 800px;">
     <h1 class="text-2xl font-bold mb-4">Laporan Transaksi</h1>
-    <p>Transaksi oleh {{ auth()->user()->name }} ({{ auth()->user()->role }})</p>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -63,14 +62,16 @@
         fetch("{{ route('laporan.pdf') }}")
             .then(response => response.blob())
             .then(blob => {
-                const url = window.URL.createObjectURL(new Blob([blob]));
+                const url = window.URL.createObjectURL(blob);
                 const a = document.createElement('a');
+                a.style.display = 'none';
                 a.href = url;
                 a.download = 'laporan_transaksi.pdf';
                 document.body.appendChild(a);
                 a.click();
                 window.URL.revokeObjectURL(url);
-            });
+            })
+            .catch(error => console.error('Error fetching PDF:', error));
     });
 </script>
 

@@ -33,6 +33,11 @@
                 <a href="{{ route('supplier.index') }}" class="bg-blue-500 text-white px-1 py-1 rounded-md hover:bg-blue-600"><i class="fas fa-info-circle"></i></a>
             </div>
             <div class="p-4 bg-white shadow rounded-lg">
+                <h2 class="text-lg font-semibold mb-2">Total Pembelian</h2>
+                <p class="text-2xl">{{ $totalPembelian }}</p>
+                <a href="{{ route('pembelian.index') }}" class="bg-blue-500 text-white px-1 py-1 rounded-md hover:bg-blue-600"><i class="fas fa-info-circle"></i></a>
+            </div>
+            <div class="p-4 bg-white shadow rounded-lg">
                 <h2 class="text-lg font-semibold mb-2">Laporan Transaksi</h2>
                 <p class="text-2xl">{{ $laporanTransaksi }}</p>
                 <a href="{{ route('laporan') }}" class="bg-blue-500 text-white px-1 py-1 rounded-md hover:bg-blue-600"><i class="fas fa-info-circle"></i></a>

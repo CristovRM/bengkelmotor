@@ -28,7 +28,7 @@
                 <label for="produk[0][nama_produk]" class="block text-gray-700 font-bold mb-2">Nama Produk:</label>
                 <select name="produk[0][nama_produk]" class="produk-select shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onchange="calculateTotal()" required>
                     @foreach($produk as $produkItem)
-                        <option value="{{ $produkItem['nama_produk'] }}" data-harga="{{ $produkItem['harga_jual'] }}">{{ $produkItem['nama_produk'] }}</option>
+                        <option value="{{ $produkItem['nama_produk'] }}" data-harga="{{ $produkItem['harga_jual'] }}" data-stok="{{ $produkItem['stok'] }}">{{ $produkItem['nama_produk'] }} - Stok: {{ $produkItem['stok'] }}</option>
                     @endforeach
                 </select>
                 
@@ -67,7 +67,7 @@
             <label for="produk[${productCount}][nama_produk]" class="block text-gray-700 font-bold mb-2">Nama Produk:</label>
             <select name="produk[${productCount}][nama_produk]" class="produk-select shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onchange="calculateTotal()" required>
                 @foreach($produk as $produkItem)
-                    <option value="{{ $produkItem['nama_produk'] }}" data-harga="{{ $produkItem['harga_jual'] }}">{{ $produkItem['nama_produk'] }}</option>
+                    <option value="{{ $produkItem['nama_produk'] }}" data-harga="{{ $produkItem['harga_jual'] }}" data-stok="{{ $produkItem['stok'] }}">{{ $produkItem['nama_produk'] }} - Stok: {{ $produkItem['stok'] }}</option>
                 @endforeach
             </select>
             
@@ -104,7 +104,6 @@
         document.getElementById('submitButton').disabled = false;
     }
 
-    // Panggil checkPaymentMethod saat halaman dimuat ulang
     checkPaymentMethod();
 </script>
 @endsection

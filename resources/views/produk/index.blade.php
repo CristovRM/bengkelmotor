@@ -32,7 +32,8 @@
             <table class="w-full table-auto">
                 <thead>
                     <tr class="bg-gray-200 text-gray-700 uppercase text-sm leading-normal">
-                        <th class="py-3 px-6 text-left">Kode</th>
+                        <th class="py-3 px-6 text-left">ID</th>
+                        <th class="py-3 px-6 text-left">Kode Produk</th>
                         <th class="py-3 px-6 text-left">Nama Produk</th>
                         <th class="py-3 px-6 text-left">Nama Kategori</th>
                         <th class="py-3 px-6 text-left">Nama Supplier</th>
@@ -46,6 +47,7 @@
                     @foreach($produk as $item)
                         <tr class="border-b border-gray-200 hover:bg-gray-100">
                             <td class="py-3 px-6 text-left">{{ $item['id_produk'] }}</td>
+                            <td class="py-3 px-6 text-left">{{ $item['kode_produk'] }}</td>
                             <td class="py-3 px-6 text-left">{{ $item['nama_produk'] }}</td>
                             <td class="py-3 px-6 text-left">{{ $item['nama_kategori'] }}</td>
                             <td class="py-3 px-6 text-left">{{ $item['nama_supplier'] }}</td>

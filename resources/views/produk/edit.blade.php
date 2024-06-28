@@ -22,6 +22,10 @@
         @csrf
         @method('PUT')
         <div class="mb-4">
+            <label for="kode_produk" class="block text-gray-700 font-bold mb-2">Kode Produk:</label>
+            <input type="text" id="kode_produk" name="kode_produk" value="{{ $produk['kode_produk'] }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+        </div>
+        <div class="mb-4">
             <label for="nama_produk" class="block text-gray-700 font-bold mb-2">Nama Produk:</label>
             <input type="text" id="nama_produk" name="nama_produk" value="{{ $produk['nama_produk'] }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
@@ -55,11 +59,9 @@
         </div>
         <div class="flex items-center justify-between">
             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                Update
+                Simpan Perubahan
             </button>
-            <a href="{{ route('produk.index') }}" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
-                Kembali ke Daftar Produk
-            </a>
+            <a href="{{ route('produk.index') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Batal</a>
         </div>
     </form>
 </div>

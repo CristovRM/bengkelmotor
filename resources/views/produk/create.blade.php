@@ -21,6 +21,10 @@
     <form action="{{ route('produk.store') }}" method="POST">
         @csrf
         <div class="mb-4">
+            <label for="kode_produk" class="block text-gray-700 font-bold mb-2">Kode Produk:</label>
+            <input type="text" id="kode_produk" name="kode_produk" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+        </div>
+        <div class="mb-4">
             <label for="nama_produk" class="block text-gray-700 font-bold mb-2">Nama Produk:</label>
             <input type="text" id="nama_produk" name="nama_produk" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
@@ -42,7 +46,7 @@
         </div>
         <div class="mb-4">
             <label for="harga_beli" class="block text-gray-700 font-bold mb-2">Harga Beli:</label>
-            <input type="number" id="harga_beli" name="harga_beli" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            <input type="number" id="harga_beli" name="harga_beli" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required oninput="updateHargaJual()">
         </div>
         <div class="mb-4">
             <label for="harga_jual" class="block text-gray-700 font-bold mb-2">Harga Jual:</label>
@@ -62,4 +66,18 @@
         </div>
     </form>
 </div>
+
+<script>
+    function updateHargaJual() {
+        var hargaBeli = document.getElementById('harga_beli').value;
+        var hargaJual = document.getElementById('harga_jual');
+        var margin = 0.20; // margin 20%
+        
+        if (hargaBeli) {
+            hargaJual.value = (parseFloat(hargaBeli) * (1 + margin)).toFixed(2);
+        } else {
+            hargaJual.value = '';
+        }
+    }
+</script>
 @endsection

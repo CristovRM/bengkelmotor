@@ -12,6 +12,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\KasirController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\PembelianController;
+use App\Http\Controllers\PengeluaranController;
 
 
 Route::resource('users', UserController::class);
@@ -76,12 +78,21 @@ Route::resource('produk',ProdukController::class,);
 
 Route::resource('supplier',SupplierController::class,);
 
+Route::resource('pembelian',PembelianController::class,);
+
+Route::resource('pengeluaran',PengeluaranController::class,);
+
 Route::resource('karyawan',KaryawanController::class,);
 
+Route::middleware(['auth'])->group(function () {
 Route::resource('transaksi',TransaksiController::class,);
 
-Route::get('transaksi/{id}/cetak', [TransaksiController::class, 'cetak'])->name('transaksi.cetak');
+Route::get('/laporan', [TransaksiController::class, 'laporan'])->name('laporan');
+Route::get('/laporan.pdf', [TransaksiController::class, 'laporanPDF'])->name('laporan.pdf');
 
+
+Route::get('transaksi/{id}/cetak', [TransaksiController::class, 'cetak'])->name('transaksi.cetak');
+});
 
 
 
@@ -90,9 +101,7 @@ Route::get('/Home', [HomeController::class, 'index'])->name('Home');
 
 
 
-    Route::get('/laporan', [TransaksiController::class, 'laporan'])->name('laporan');
-    Route::get('/laporan.pdf', [TransaksiController::class, 'laporanPDF'])->name('laporan.pdf');
-
+    
 
 
 

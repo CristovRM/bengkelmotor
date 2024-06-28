@@ -24,6 +24,12 @@ class TransaksiController extends Controller
                 $transaksi = []; 
             }
 
+            foreach ($transaksi as &$trx) {
+                if (!isset($trx['produk'])) {
+                    $trx['produk'] = [];
+                }
+            }
+
             return view('transaksi.index', compact('transaksi'));
         } catch (\Exception $e) {
             $transaksi = [];
@@ -172,6 +178,8 @@ public function show($id)
                     $laporan[$bulan]['total_amount'] += $item['total_harga'];
                     $laporan[$bulan]['transaksi'][] = $item;
                 }
+                
+                 
 
                 return view('laporan', compact('laporan'));
             } else {
@@ -208,11 +216,8 @@ public function show($id)
                 $laporan[$bulan]['transaksi'][] = $item;
             }
 
-            // Load the view and pass the report data
-            $pdf = Dompdf::loadView('laporan_pdf', compact('laporan'));
-
-            // Stream the generated PDF
-            return $pdf->stream('laporan_transaksi.pdf');
+            $pdf = PDF::loadView('laporan.pdf', compact('laporan'));
+            return $pdf->download('laporan.pdf');
         } else {
             return redirect()->route('laporan')->withErrors(['msg' => 'Gagal mengambil data laporan transaksi.']);
         }

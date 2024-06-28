@@ -24,6 +24,7 @@ class ProdukController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
+            'kode_produk' => 'required',
             'nama_kategori' => 'required',
             'nama_supplier' => 'required',
             'nama_produk' => 'required',
@@ -72,6 +73,7 @@ class ProdukController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
+            'kode_produk' => 'required',
             'nama_kategori' => 'required',
             'nama_supplier' => 'required',
             'nama_produk' => 'required',

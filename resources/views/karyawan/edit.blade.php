@@ -35,7 +35,8 @@
             <label for="address" class="form-label">Alamat</label>
             <textarea class="form-control" id="address" name="address" required>{{ $karyawan['address'] }}</textarea>
         </div>
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Simpan</button>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Simpan Perubahan</button>
+        <a href="{{ route('karyawan.index') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Batal</a>
     </form>
 </div>
 @endsection

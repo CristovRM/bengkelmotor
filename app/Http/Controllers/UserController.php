@@ -2,32 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Role;
 use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    public function index() 
-    {  
-        $users = User::with('roles')->get();
+    // Display a listing of the users.
+    public function index()
+    {
+        $users = User::all();
         return view('users.index', compact('users'));
     }
 
-    public function create() {
-        $roles = Role::all();
-        return view('users.create', compact('roles'));
+    // Show the form for creating a new user.
+    public function create()
+    {
+        return view('users.create');
     }
 
-    public function store(Request $request) {
+    // Store a newly created user in storage.
+    public function store(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'roles' => 'required|array',
-            'roles.*' => 'exists:roles,role',
+            'role' => 'required|string|in:admin,kasir'
         ]);
 
         if ($validator->fails()) {
@@ -36,62 +38,62 @@ class UserController extends Controller
                              ->withInput();
         }
 
-        $user = new User([
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
-            'password' => bcrypt($request->get('password')),
-            'role' => $request->get('name')
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => $request->role
         ]);
-
-        
-        $user->save();
-
-    // Retrieve role IDs
-    $roleIds = Role::whereIn('role', $request->roles)->pluck('id')->toArray();
-    
-    // Attach roles using IDs
-    $user->roles()->sync($roleIds);
-
-
-       
 
         return redirect()->route('users.index')->with('success', 'User created successfully.');
     }
 
-    public function edit($id) {
+    // Display the specified user.
+    public function show($id)
+    {
         $user = User::findOrFail($id);
-        $roles = Role::all();
-        return view('users.edit', compact('user', 'roles'));
+        return view('users.show', compact('user'));
     }
 
-    public function update(Request $request, $id) {
+    // Show the form for editing the specified user.
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        return view('users.edit', compact('user'));
+    }
+
+    // Update the specified user in storage.
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+            'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
             'password' => 'nullable|string|min:8|confirmed',
-            'roles' => 'required|array',
-            'roles.*' => 'exists:roles,name',
+            'role' => 'required|string|in:admin,kasir'
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('users.edit', $id)
+            return redirect()->route('users.edit', $user->id)
                              ->withErrors($validator)
                              ->withInput();
         }
 
-        $user = User::findOrFail($id);
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->password ? Hash::make($request->password) : $user->password,
-        ]);
-
-        $user->roles()->sync($request->roles);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if ($request->password) {
+            $user->password = Hash::make($request->password);
+        }
+        $user->role = $request->role;
+        $user->save();
 
         return redirect()->route('users.index')->with('success', 'User updated successfully.');
     }
 
-    public function destroy($id) {
+    // Remove the specified user from storage.
+    public function destroy($id)
+    {
         $user = User::findOrFail($id);
         $user->delete();
 

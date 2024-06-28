@@ -9,6 +9,7 @@ use App\Models\Karyawan;
 use App\Models\Kategori;
 use App\Models\Produk;
 use App\Models\Supplier;
+use App\Models\Pembelian;
 
 class DashboardController extends Controller
 {
@@ -23,9 +24,10 @@ class DashboardController extends Controller
         $totalKategori = Kategori::count();
         $totalProduk = Produk::count();
         $totalSupplier = Supplier::count();
+        $totalPembelian = Pembelian::count();
         $laporanTransaksi = Transaksi::count();
 
-        return view('dashboar', compact('totalUsers', 'totalKaryawan', 'totalKategori', 'totalProduk', 'totalSupplier','laporanTransaksi'));
+        return view('dashboar', compact('totalUsers', 'totalKaryawan', 'totalKategori', 'totalProduk', 'totalSupplier','totalPembelian','laporanTransaksi'));
         return view('dashboard');
     }   
 
