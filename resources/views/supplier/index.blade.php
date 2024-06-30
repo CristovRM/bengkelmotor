@@ -26,6 +26,7 @@
                     <th class="px-4 py-2">ID</th>
                     <th class="px-4 py-2">Nama Supplier</th>
                     <th class="px-4 py-2">Alamat</th>
+                    <th class="px-4 py-2">Nomor Kontak</th>
                     <th class="px-4 py-2">Aksi</th>
                 </tr>
             </thead>
@@ -35,6 +36,7 @@
                         <td class="border px-4 py-2">{{ $supplier['id_supplier'] }}</td>
                         <td class="border px-4 py-2">{{ $supplier['nama_supplier'] }}</td>
                         <td class="border px-4 py-2">{{ $supplier['alamat'] }}</td>
+                        <td class="border px-4 py-2">{{ $supplier['no_kontak'] }}</td>
                         <td class="border px-4 py-2">
                             <a href="{{ route('supplier.show', $supplier['id_supplier']) }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"><i class="fas fa-info-circle"></i></a>
                             <a href="{{ route('supplier.edit', $supplier['id_supplier']) }}" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600"><i class="fas fa-edit"></i></a>

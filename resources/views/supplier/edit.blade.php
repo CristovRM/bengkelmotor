@@ -18,6 +18,10 @@
                 <label for="alamat" class="block text-sm font-bold mb-2">Alamat:</label>
                 <textarea name="alamat" id="alamat" rows="4" class="w-full px-3 py-2 border rounded" required>{{ $supplier['alamat'] }}</textarea>
             </div>
+            <div class="mb-4">
+                <label for="no_kontak" class="block text-sm font-bold mb-2">Nomor Kontak</label>
+                <input type="text" class="form-control" id="no_kontak" name="no_kontak" value="{{ old('no_kontak') }}" required>
+            </div>
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Simpan Perubahan</button>
             <a href="{{ route('supplier.index') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Batal</a>
         </form>
